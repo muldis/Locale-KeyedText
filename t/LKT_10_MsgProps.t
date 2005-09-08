@@ -1,7 +1,7 @@
 #!perl
 use 5.008001; use utf8; use strict; use warnings;
 
-use Test::More 0.47;
+use Test::More;
 
 plan( 'tests' => 24 );
 

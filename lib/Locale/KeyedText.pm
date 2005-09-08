@@ -2,7 +2,7 @@
 use 5.008001; use utf8; use strict; use warnings;
 
 package Locale::KeyedText;
-our $VERSION = '1.05';
+use version; our $VERSION = qv('1.6.0');
 
 ######################################################################
 ######################################################################
@@ -184,6 +184,10 @@ __END__
 
 Locale::KeyedText - Refer to user messages in programs by keys
 
+=head1 VERSION
+
+This document describes Locale::KeyedText version 1.6.0.
+
 =head1 SYNOPSIS
 
     use Locale::KeyedText;
@@ -256,7 +260,7 @@ returns its results for calling code to output as it sees fit.  It also does not
 make direct use of environment variables, which can aid in portability.
 
 Locale::KeyedText itself is trivially easy to install, since it is written in
-pure Perl and it has no external dependencies of any kind.
+pure Perl and it has few external dependencies.
 
 Practically speaking, Locale::KeyedText doesn't actually do a lot internally; it
 exists mainly to document a certain localization methodology in an easily
@@ -506,13 +510,6 @@ Each of a Translator object's Template Sets and Template Members properties must
 contain 1 or more elements each, and each element must be a defined value,
 though those values can be '' or '0' if you want.
 
-=head1 SYNTAX
-
-This class does not export any functions or methods, so you need to call them
-using object notation.  This means using B<Class-E<gt>function()> for functions
-and B<$object-E<gt>method()> for methods.  If you are inheriting this class for
-your own modules, then that often means something like B<$self-E<gt>method()>.  
-
 =head1 CONSTRUCTOR WRAPPER FUNCTIONS
 
 These functions are stateless and can be invoked only off of the module name;
@@ -532,9 +529,9 @@ This function wraps Locale::KeyedText::Message->new( MSG_KEY[, MSG_VARS] ).
 
 This function wraps Locale::KeyedText::Translator->new( SET_NAMES, MEMBER_NAMES ).
 
-=head1 MESSAGE CONSTRUCTOR FUNCTIONS AND METHODS
+=head1 MESSAGE CONSTRUCTOR FUNCTIONS
 
-This function/method is stateless and can be invoked off of either the Message
+This function is stateless and can be invoked off of either the Message
 class name or an existing Message object, with the same result.
 
 =head2 new( MSG_KEY[, MSG_VARS] )
@@ -576,9 +573,9 @@ name specified in VAR_NAME.
 This method returns all Message Variable names and values in this object as a
 hash ref.
 
-=head1 TRANSLATOR CONSTRUCTOR FUNCTIONS AND METHODS
+=head1 TRANSLATOR CONSTRUCTOR FUNCTIONS
 
-This function/method is stateless and can be invoked off of either the
+This function is stateless and can be invoked off of either the
 Translator class name or an existing Translator object, with the same result.
 
 =head2 new_translator( SET_NAMES, MEMBER_NAMES )
@@ -874,17 +871,20 @@ Content of alternate text Template file 'MyApp/L/Homer.pm':
 
 =head1 DEPENDENCIES
 
-Perl Version: 5.008001
+This module requires any version of Perl 5.x.y that is at least 5.8.1.
 
-Core Modules: I<none>
+It also requires the Perl module L<version>, which would
+conceptually be built-in to Perl, but isn't, so it is on CPAN instead.
 
-Non-Core Modules: I<none>
+=head1 INCOMPATIBILITIES
+
+None reported.
 
 =head1 SEE ALSO
 
 L<Locale::Maketext>, L<Locale::gettext>, L<Locale::PGetText>, L<DBIx::BabelKit>.
 
-=head1 CAVEATS
+=head1 BUGS AND LIMITATIONS
 
 All Locale::KeyedText functions and methods currently will fail silently if
 they are given bad input; they will not throw any exceptions.  (At the same
@@ -904,18 +904,22 @@ require external files itself to resolve them, leading to recursive complexity.
 Suggestions for an alternate "proper" solution are welcome; meanwhile, the
 current solution seems best to me.
 
-=head1 COPYRIGHT AND LICENSE
+=head1 AUTHOR
+
+Darren R. Duncan (C<perl@DarrenDuncan.net>)
+
+=head1 LICENCE AND COPYRIGHT
 
 This file is part of the Locale::KeyedText library.
 
 Locale::KeyedText is Copyright (c) 2003-2005, Darren R. Duncan.  All rights
 reserved.  Address comments, suggestions, and bug reports to
-perl@DarrenDuncan.net, or visit http://www.DarrenDuncan.net/ for more
+C<perl@DarrenDuncan.net>, or visit L<http://www.DarrenDuncan.net/> for more
 information.
 
 Locale::KeyedText is free software; you can redistribute it and/or modify it
 under the terms of the GNU Lesser General Public License (LGPL) as published by
-the Free Software Foundation (http://www.fsf.org/); either version 2.1 of the
+the Free Software Foundation (L<http://www.fsf.org/>); either version 2.1 of the
 License, or (at your option) any later version.  You should have received a copy
 of the LGPL as part of the Locale::KeyedText distribution, in the file named
 "LGPL"; if not, write to the Free Software Foundation, Inc., 51 Franklin St,
@@ -933,7 +937,7 @@ would appreciate being informed any time you create a modified version of
 Locale::KeyedText that you are willing to distribute, because that is a
 practical way of suggesting improvements to the standard version.
 
-=head1 CREDITS
+=head1 ACKNOWLEDGEMENTS
 
 Besides myself as the creator ...
 

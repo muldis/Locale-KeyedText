@@ -7,7 +7,8 @@ WriteMakefile(
     'NAME' => 'Locale::KeyedText',
     'VERSION_FROM' => 'lib/Locale/KeyedText.pm', # finds $VERSION
     'PREREQ_PM' => {
-        'Test::More' => '0.47', # but only for the test suite
+        'version' => 0,
+        'Test::More' => 0, # but only for the test suite
     },
 );
 

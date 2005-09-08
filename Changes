@@ -1,3 +1,65 @@
+                          Locale-KeyedText
+----------------------------------------------------------------------
+
+2005-09-08   Darren Duncan <perl@DarrenDuncan.net>
+
+    * Locale-KeyedText Release 1.6.0.
+
+    * New code file versions are: KeyedText.pm v1.6.0.
+
+    * From now on, if the minimum Perl version that this distribution depends on
+    (currently 5.008001) comes bundled with a satisfactory version of a module
+    that we have a dependency on, then we will no longer specify any version
+    number when referring to said module.  An example of such is Test::More.
+
+    * Added a new main title to this Changes file that matches the ReadMe file.
+
+    * Rewrote the documentation section KEEPING UP TO DATE in the ReadMe file.
+
+    * Minor KeyedText.pm documentation update so that any Perl subs which were
+    referred to as "function/method" etc are now simply "function".
+
+    * Updated the DESCRIPTION paragraph of KeyedText.pm that refers to how easy
+    to install the module is; it now says the module has few external
+    dependencies, rather than specifying zero.
+
+    * Converted every distribution file to use indentations composed of space 
+    characters (4 spaces per indentation level) rather than tab characters.
+
+    * Updated all files containing POD (*.pm, *.pod) to re-order some POD
+    sections.  Now all of the POD is after all of the code, rather than that
+    being mostly true but for a bit of POD before most of the code.  The 'NAME'
+    POD has been moved to just above the 'SYNOPSIS'. The 'DEPENDENCIES' has been
+    moved to just above the 'SEE ALSO'.  Any 'BUGS' and 'CAVEATS' have been
+    moved to just below the 'SEE ALSO'.  The 'COPYRIGHT AND LICENSE' has been
+    moved to the very end of the file, except that any 'CREDITS' have been moved
+    below that.  Also updated the ReadMe file to move the 'CREDITS' below the
+    'COPYRIGHT AND LICENSE'.  There were zero changes to the content of any POD 
+    sections, and no new POD sections were added or existing ones removed,
+    except for those explicitly listed below.
+
+    * Updated all files containing POD:  Deleted the 'SYNTAX' section, whose
+    value was dubious, from any files that had one.  Renamed 'COPYRIGHT AND
+    LICENSE' to 'LICENCE AND COPYRIGHT', and added a new 'AUTHOR' section just
+    above it.  Renamed 'CREDITS' to 'ACKNOWLEDGEMENTS' in any files that had
+    one.  COPYRIGHT and CREDITS were likewise renamed in the ReadMe file.
+
+    * Updated the POD in all *.pm files:  Added a new 'VERSION' section, which
+    appears just below the 'NAME'.  Added a new 'INCOMPATIBILITIES' section,
+    which appears just below 'DEPENDENCIES'.  Renamed and/or merged any 'BUGS'
+    and 'CAVEATS' sections into a single 'BUGS AND LIMITATIONS' section, and
+    added that section to any files lacking its predecessors.  Rewrote the
+    'DEPENDENCIES' into a new paragraph-resembling format that specifies where
+    each dependency is, such as bundled with perl, or bundled with the current
+    distribution, or available on CPAN; also rewrote the ReadMe file version.
+
+    * Updated all *.pm files to add a new external dependency on the 'version'
+    module, which has core-like functionality but isn't yet bundled with Perl;
+    all 'our $VERSION' declarations were changed to qv-wrapped three-part format
+    from floating point format; likewise, updated the *_00_Compile.t file to use
+    'version', and also changed the tests for expected module versions to be
+    performed by is() rather than cmp_ok().
+
 2005-06-14   Darren Duncan <perl@DarrenDuncan.net>
 
     * Locale-KeyedText Release 1.05.
