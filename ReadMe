@@ -41,7 +41,7 @@ Perl Version: 5.008001
 
 Core Modules:
 
-	Test::More 0.47 (but only for the test suite)
+    Test::More 0.47 (but only for the test suite)
 
 Non-Core Modules: none
 
