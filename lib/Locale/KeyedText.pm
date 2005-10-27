@@ -4,8 +4,8 @@ use 5.008001; use utf8; use strict; use warnings;
 package Locale::KeyedText;
 use version; our $VERSION = qv('1.6.2');
 
-######################################################################
-######################################################################
+###########################################################################
+###########################################################################
 
 # Names of properties for objects of the Locale::KeyedText::Message class
 # are declared here:
@@ -24,26 +24,26 @@ my $TPROP_TMPL_MEM_NMS = 'tmpl_mem_nms';
 # These are constant values used by this module.
 my $EMPTY_STR = q{};
 
-######################################################################
+###########################################################################
 
 sub new_message {
     my (undef, $msg_key, $msg_vars) = @_;
     return Locale::KeyedText::Message->new( $msg_key, $msg_vars );
 }
 
-######################################################################
+###########################################################################
 
 sub new_translator {
     my (undef, $set_names, $member_names) = @_;
     return Locale::KeyedText::Translator->new( $set_names, $member_names );
 }
 
-######################################################################
-######################################################################
+###########################################################################
+###########################################################################
 
-package Locale::KeyedText::Message;
+package Locale::KeyedText::Message; { # class
 
-######################################################################
+###########################################################################
 
 sub new {
     my ($class, $msg_key, $msg_vars) = @_;
@@ -63,7 +63,7 @@ sub new {
     return $message;
 }
 
-######################################################################
+###########################################################################
 
 sub get_message_key {
     my ($message) = @_;
@@ -82,7 +82,7 @@ sub get_message_variables {
     return {%{$message->{$MPROP_MSG_VARS}}};
 }
 
-######################################################################
+###########################################################################
 
 sub as_string {
     # This method is intended for debugging use only.
@@ -95,12 +95,16 @@ sub as_string {
         } sort keys %{$msg_vars};
 }
 
-######################################################################
-######################################################################
+###########################################################################
 
-package Locale::KeyedText::Translator;
+} # class Locale::KeyedText::Message
 
-######################################################################
+###########################################################################
+###########################################################################
+
+package Locale::KeyedText::Translator; { # class
+
+###########################################################################
 
 sub new {
     my ($class, $set_names, $member_names) = @_;
@@ -134,7 +138,7 @@ sub new {
     return $translator;
 }
 
-######################################################################
+###########################################################################
 
 sub get_template_set_names {
     my ($translator) = @_;
@@ -199,7 +203,7 @@ sub translate_message {
     return $text;
 }
 
-######################################################################
+###########################################################################
 
 sub as_string {
     # This method is intended for debugging use only.
@@ -210,8 +214,12 @@ sub as_string {
          . 'MEMBERS: ' . (join ', ', @{$member_names});
 }
 
-######################################################################
-######################################################################
+###########################################################################
+
+} # class Locale::KeyedText::Translator
+
+###########################################################################
+###########################################################################
 
 1;
 __END__
@@ -275,6 +283,8 @@ documentation sections further below.>
 
 =head1 DESCRIPTION
 
+=head2 Introduction
+
 Many times during a program's operation, the program (or a module it uses)
 will need to display a message to the user, or generate a message to be
 shown to the user.  Sometimes this is an error message of some kind, but it
@@ -322,24 +332,7 @@ benefits to developers and users alike.
 For some practical examples of Locale::KeyedText in use, see my dependent
 CPAN modules whose problem domain is databases and/or SQL.
 
-=head1 CLASSES IN THIS MODULE
-
-This module is implemented by several object-oriented Perl 5 packages, each
-of which is referred to as a class.  They are: B<Locale::KeyedText> (the
-module's name-sake), B<Locale::KeyedText::Message> (aka B<Message>), and
-B<Locale::KeyedText::Translator> (aka B<Translator>).
-
-I<While all 3 of the above classes are implemented in one module for
-convenience, you should consider all 3 names as being "in use"; do not
-create any modules or packages yourself that have the same names.>
-
-The Message and Translator classes do most of the work and are what you
-mainly use.  The name-sake class mainly exists to guide CPAN in indexing
-the whole module, but it also provides a few wrapper functions over the
-other classes for your convenience; you never instantiate an object of
-Locale::KeyedText itself.
-
-=head1 HOW IT WORKS
+=head2 How It Works
 
 Modern programs or database systems often refer to an error condition by an
 internal code which is guaranteed to be unique for a situation, and this is
@@ -428,6 +421,8 @@ that each Template can optionally use them; but often a template will
 choose to show less than all of the available details depending on the
 intended viewer.
 
+=head2 Compared to Other Solutions
+
 One of the main distinctions of this approach over similar modules is that
 text is always looked up by a key which is not meant to be meaningful for a
 user. Whereas, with the other modules like "gettext" it looks like you are
@@ -450,6 +445,23 @@ use a compile-time macro-based approach to substitute the user's preferred
 language into the program code itself, so it then becomes a version of that
 language.  By contrast, Locale::KeyedText does no compile time binding and
 will support multiple languages or locales simultaneously at run time.
+
+=head1 CLASSES IN THIS MODULE
+
+This module is implemented by several object-oriented Perl 5 packages, each
+of which is referred to as a class.  They are: B<Locale::KeyedText> (the
+module's name-sake), B<Locale::KeyedText::Message> (aka B<Message>), and
+B<Locale::KeyedText::Translator> (aka B<Translator>).
+
+I<While all 3 of the above classes are implemented in one module for
+convenience, you should consider all 3 names as being "in use"; do not
+create any modules or packages yourself that have the same names.>
+
+The Message and Translator classes do most of the work and are what you
+mainly use.  The name-sake class mainly exists to guide CPAN in indexing
+the whole module, but it also provides a few wrapper functions over the
+other classes for your convenience; you never instantiate an object of
+Locale::KeyedText itself.
 
 =head1 MESSAGE OBJECT PROPERTIES
 
@@ -956,6 +968,14 @@ Content of alternate text Template file 'MyApp/L/Homer.pm':
         'MYLIB_MYINV_RES_INF' => q[Don't you give me a big donut!],
     );
     sub get_text_by_key { my (undef, $msg_key) = @_; return $text_strings{$msg_key}; }
+
+=head1 DIAGNOSTICS
+
+I<This documentation is pending.>
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+I<This documentation is pending.>
 
 =head1 DEPENDENCIES
 
