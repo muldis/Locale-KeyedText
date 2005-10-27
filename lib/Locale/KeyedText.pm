@@ -1,98 +1,81 @@
 #!perl
-use 5.008001; use utf8; use strict; use warnings;
+use 5.008001;
+use utf8;
+use strict;
+use warnings;
 
-package Locale::KeyedText;
-use version; our $VERSION = qv('1.6.2');
+# External packages used by packages in this file, that don't export symbols:
+# (None Yet)
+
+###########################################################################
+###########################################################################
+
+# Constant values used by packages in this file:
+use only 'Readonly' => '1.03-';
+Readonly my $EMPTY_STR => q{};
 
 ###########################################################################
 ###########################################################################
 
-# Names of properties for objects of the Locale::KeyedText::Message class
-# are declared here:
-my $MPROP_MSG_KEY = 'msg_key';
-    # str - the machine-readable key that uniquely ident this message
-my $MPROP_MSG_VARS = 'msg_vars';
-    # hash (str,str) - named variables for messages, if any, go here
-
-# Names of properties for objects of the Locale::KeyedText::Translator
-# class are declared here:
-my $TPROP_TMPL_SET_NMS = 'tmpl_set_nms';
-    # array of str - list of Template module Set Names to search
-my $TPROP_TMPL_MEM_NMS = 'tmpl_mem_nms';
-    # array of str - list of Template module Member Names to search
-
-# These are constant values used by this module.
-my $EMPTY_STR = q{};
-
-###########################################################################
-
-sub new_message {
-    my (undef, $msg_key, $msg_vars) = @_;
-    return Locale::KeyedText::Message->new( $msg_key, $msg_vars );
-}
-
-###########################################################################
-
-sub new_translator {
-    my (undef, $set_names, $member_names) = @_;
-    return Locale::KeyedText::Translator->new( $set_names, $member_names );
-}
+package Locale::KeyedText; { # package
+    use version; our $VERSION = qv('1.6_3');
+    # Note: This given version applies to all of this file's packages.
+} # package Locale::KeyedText
 
 ###########################################################################
 ###########################################################################
 
 package Locale::KeyedText::Message; { # class
 
-###########################################################################
+    # External packages used by the Locale::KeyedText::Message class, that do export symbols:
+    use only 'Class::Std' => '0.0.4-';
+    use only 'Class::Std::Utils' => '0.0.2-';
 
-sub new {
-    my ($class, $msg_key, $msg_vars) = @_;
-
-    return
-        if !defined $msg_key;
-    defined $msg_vars or $msg_vars = {};
-    return
-        if ref $msg_vars ne 'HASH';
-    # we are assuming that hash keys never undef, so aren't testing them
-
-    my $message = bless {}, ref $class || $class;
-
-    $message->{$MPROP_MSG_KEY} = $msg_key;
-    $message->{$MPROP_MSG_VARS} = {%{$msg_vars}};
-
-    return $message;
-}
+    # Attributes of every Locale::KeyedText::Message object:
+    my %msg_key_of  :ATTR;
+        # Str
+        # The machine-readable key that uniquely ident this message.
+    my %msg_vars_of :ATTR;
+        # Hash(Str) of Any
+        # Named variables for messages, if any, go here.
 
 ###########################################################################
 
-sub get_message_key {
-    my ($message) = @_;
-    return $message->{$MPROP_MSG_KEY};
-}
+sub BUILD {
+    my ($self, $ident, $arg_ref) = @_;
+    my $msg_key = $arg_ref->{'msg_key'};
+    my $msg_vars_ref = $arg_ref->{'msg_vars'};
 
-sub get_message_variable {
-    my ($message, $var_name) = @_;
-    return
-        if !defined $var_name;
-    return $message->{$MPROP_MSG_VARS}->{$var_name};
-}
+    die 'invalid arg'
+        if !defined $msg_key or $msg_key eq '';
 
-sub get_message_variables {
-    my ($message) = @_;
-    return {%{$message->{$MPROP_MSG_VARS}}};
+    die 'invalid arg'
+        if !defined $msg_vars_ref or ref $msg_vars_ref ne 'HASH'
+            or exists $msg_vars_ref->{''};
+
+    $msg_key_of{$ident}  = $msg_key;
+    $msg_vars_of{$ident} = {%{$msg_vars_ref}};
+
+    return;
 }
 
 ###########################################################################
 
-sub as_string {
-    # This method is intended for debugging use only.
-    my ($message) = @_;
-    my $msg_key = $message->{$MPROP_MSG_KEY};
-    my $msg_vars = $message->{$MPROP_MSG_VARS};
-    return $msg_key . ': ' . join ', ', map {
-            $_ . '='
-            . (defined $msg_vars->{$_} ? $msg_vars->{$_} : $EMPTY_STR)
-        } sort keys %{$msg_vars};
+sub get_msg_key {
+    my ($self) = @_;
+    return $msg_key_of{ident $self};
+}
+
+sub get_msg_var {
+    my ($self, $var_name) = @_;
+    die 'invalid arg'
+        if !defined $var_name or $var_name eq '';
+    return $msg_vars_of{ident $self}->{$var_name};
+}
+
+sub get_msg_vars {
+    my ($self) = @_;
+    return {%{$msg_vars_of{ident $self}}};
 }
 
 ###########################################################################
@@ -104,97 +87,116 @@ sub as_string {
 
 package Locale::KeyedText::Translator; { # class
 
+    # External packages used by the Locale::KeyedText::Translator class, that do export symbols:
+    use only 'Class::Std' => '0.0.4-';
+    use only 'Class::Std::Utils' => '0.0.2-';
+
+    # Attributes of every Locale::KeyedText::Translator object:
+    my %set_names_of    :ATTR;
+        # Array of Str
+        # List of Template module Set Names to search.
+    my %member_names_of :ATTR;
+        # Array of Str
+        # List of Template module Member Names to search.
+
 ###########################################################################
 
-sub new {
-    my ($class, $set_names, $member_names) = @_;
+sub BUILD {
+    my ($self, $ident, $arg_ref) = @_;
+    my $set_names_ref = $arg_ref->{'set_names'};
+    my $member_names_ref = $arg_ref->{'member_names'};
 
-    $set_names
-        = ref $set_names eq 'ARRAY' ? [@{$set_names}]
-        :                             [$set_names]
-        ;
-    return
-        if @{$set_names} == 0;
-    for my $set_name (@{$set_names}) {
-        return
-            if !defined $set_name;
-    }
-    $member_names
-        = (ref $member_names eq 'ARRAY') ? [@{$member_names}]
-        :                                  [$member_names]
-        ;
-    return
-        if @{$member_names} == 0;
-    for my $member_name (@{$member_names}) {
-        return
-            if !defined $member_name;
+    die 'invalid arg'
+        if !defined $set_names_ref or ref $set_names_ref ne 'ARRAY'
+            or @{$set_names_ref} == 0;
+    for my $set_name (@{$set_names_ref}) {
+        die 'invalid arg'
+            if !defined $set_name or $set_name eq '';
     }
 
-    my $translator = bless {}, ref $class || $class;
+    die 'invalid arg'
+        if !defined $member_names_ref or ref $member_names_ref ne 'ARRAY'
+            or @{$member_names_ref} == 0;
+    for my $member_name (@{$member_names_ref}) {
+        die 'invalid arg'
+            if !defined $member_name or $member_name eq '';
+    }
 
-    $translator->{$TPROP_TMPL_SET_NMS} = $set_names;
-    $translator->{$TPROP_TMPL_MEM_NMS} = $member_names;
+    $set_names_of{$ident}    = [@{$set_names_ref}];
+    $member_names_of{$ident} = [@{$member_names_ref}];
 
-    return $translator;
+    return;
 }
 
 ###########################################################################
 
-sub get_template_set_names {
-    my ($translator) = @_;
-    return [@{$translator->{$TPROP_TMPL_SET_NMS}}];
+sub get_set_names {
+    my ($self) = @_;
+    return [@{$set_names_of{ident $self}}];
 }
 
-sub get_template_member_names {
-    my ($translator) = @_;
-    return [@{$translator->{$TPROP_TMPL_MEM_NMS}}];
+sub get_member_names {
+    my ($self) = @_;
+    return [@{$member_names_of{ident $self}}];
 }
 
 ######################################################################
 
 sub translate_message {
-    my ($translator, $message) = @_;
+    my ($self, $message) = @_;
 
-    return
-        if !ref $message
+    die 'invalid arg'
+        if !defined $message or !ref $message
             or !UNIVERSAL::isa( $message, 'Locale::KeyedText::Message' );
-
-    my $msg_key = $message->{$MPROP_MSG_KEY};
-    my $msg_vars = $message->{$MPROP_MSG_VARS};
-    my $set_names = $translator->{$TPROP_TMPL_SET_NMS};
-    my $member_names = $translator->{$TPROP_TMPL_MEM_NMS};
 
     my $text = undef;
     MEMBER:
-    for my $member_name (@{$member_names}) {
+    for my $member_name (@{$member_names_of{ident $self}}) {
         SET:
-        for my $set_name (@{$set_names}) {
-            my $template_module_name = $set_name . $member_name;
+        for my $set_name (@{$set_names_of{ident $self}}) {
+            my $module_name = $set_name . $member_name;
+
+            # Determine if requested template module is already loaded.
+            # It may have been embedded in a core program file and hence
+            # should never be loaded by translate_message().
+            no strict 'refs';
+            my $module_is_loaded = defined %{$module_name . '::'};
+            use strict 'refs';
+
+            # Try to load an external Perl template module; on a require
+            # failure, we assume that module intentionally doesn't exist,
+            # and so skip to the next candidate module name.
+            if (!$module_is_loaded) {
+                # Note: We have to invoke this 'require' in an eval string
+                # because we need the bareword semantics, where 'require'
+                # will munge the package name into file system paths.
+                eval "require $module_name;";
+                next SET
+                    if $@;
+            }
+
+            # Try to fetch template text for the given message key from the
+            # successfully loaded template module; on a function call
+            # death, assume module is damaged and say so; an undefined
+            # ret val means module doesn't define key, skip to next module.
             eval {
-                no strict 'refs';
-                my $package_is_loaded
-                    = defined %{$template_module_name . '::'};
-                use strict 'refs';
-                if (!$package_is_loaded) {
-                    # a bare "require $template_module_name;"
-                    # yields "can't find module in @INC" error in Perl 5.6
-                    eval "require $template_module_name;";
-                    die $@
-                        if $@;
-                }
-                $text = $template_module_name->get_text_by_key( $msg_key );
+                $text = $module_name->get_text_by_key(
+                    $message->get_msg_key() );
             };
-            next SET
+            die "damaged template '$module_name': $@"
                 if $@;
             next SET
-                if !$text;
-            for my $var_name (keys %{$msg_vars}) {
-                my $var_value
-                    = defined $msg_vars->{$var_name}
-                      ? $msg_vars->{$var_name}
-                      : $EMPTY_STR
-                      ;
-                $text =~ s/ \{ $var_name \} /$var_value/xg;
+                if !defined $text;
+
+            # We successfully got template text for the message key, so
+            # interpolate the message vars into it and return that.
+            while (my ($var_name, $var_value)
+                    = each %{$message->get_msg_vars()}) {
+                my $var_value_as_str
+                    = defined $var_value ? "$var_value"
+                    :                      $EMPTY_STR
+                    ;
+                $text =~ s/ \{ $var_name \} /$var_value_as_str/xg;
             }
             last MEMBER;
         }
@@ -205,23 +207,12 @@ sub translate_message {
 
 ###########################################################################
 
-sub as_string {
-    # This method is intended for debugging use only.
-    my ($translator) = @_;
-    my $set_names = $translator->{$TPROP_TMPL_SET_NMS};
-    my $member_names = $translator->{$TPROP_TMPL_MEM_NMS};
-    return 'SETS: ' . (join ', ', @{$set_names}) . '; '
-         . 'MEMBERS: ' . (join ', ', @{$member_names});
-}
-
-###########################################################################
-
 } # class Locale::KeyedText::Translator
 
 ###########################################################################
 ###########################################################################
 
-1;
+1; # Magic true value required at end of a reuseable file's code.
 __END__
 
 =encoding utf8
