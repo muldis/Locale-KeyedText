@@ -14,13 +14,37 @@
 
     * New code file versions are: KeyedText.pm 2.0.0 and en.pm 2.0.0.
 
-    * The first main purpose of this release is making Locale::KeyedText
-    substantially lighter in its external dependencies, so that it can be
-    installed and used with a relative minimum of overhead.  This release
+    * The first main purpose of this release is to excise all of
+    Locale::KeyedText's runtime dependencies on non-Perl-core modules, so
+    that it can be installed and used with a relative minimum of overhead.
+    As of this release, each of the 2 Locale::KeyedText classes requires
+    only the Perl core or core modules to run, and nothing else.  For the
+    test suite that is also the case, at least if that Perl is version
+    5.10.1 or newer; otherwise, the test suite also depends on just the 1
+    dual-life CPAN module Test::More version 0.92 or newer.  This release
     is also about bringing other aspects of modernity to this distribution.
 
     * This distribution has excised its direct external dependencies on the
-    modules "Readonly", "only" and "version".
+    modules Class::Std, Class::Std::Utils, Readonly, "only" and "version".
+    The dependencies on those were mostly added with release 1.06_3 per
+    recommendation of the book "Perl Best Practices" but in retrospect
+    those particular changes didn't really bring much to the table.
+
+    * Now that KeyedText.pm no longer uses Class::Std, its 2 classes now
+    explicitly define their own new() submethods, and also the style for
+    declaring and using object attributes is now akin to what Moose
+    provides, but that it is implemented manually.  Besides new(), each
+    class now has an explicit BUILDARGS() method plus an explicit private
+    accessor method per attribute for all other class methods to use.  Also
+    each object is once again a regular Perl blessed hashref, as it last
+    was in release 1.060002, not the "inside-out" style of Class::Std.
+
+    * For use by BUILDARGS(), en.pm has gained an additional user text
+    message with key 'LKT_ARGS_BAD_PSEUDO_NAMED'.
+
+    * Added "no warnings 'deprecated'" line to template_module_is_loaded()
+    as a stop-gap measure until we replace the current test for a module
+    being loaded with one that modern Perls find acceptable.
 
     * Removed the Perl shebang line "#!perl" from every Perl file with one.
 

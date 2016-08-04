@@ -10,6 +10,10 @@ use warnings;
 my $TEXT_STRINGS = {
     # This group of strings is generic and can be used by any package:
 
+    'LKT_ARGS_BAD_PSEUDO_NAMED'
+        => q[<CLASS>.<METH>(): bad pseudo-named arguments list;]
+            . q[ it must have an even number of positional elements.],
+
     'LKT_ARG_UNDEF'
         => q[<CLASS>.<METH>(): argument <ARG> is undefined (or missing).],
     'LKT_ARG_NO_ARY'

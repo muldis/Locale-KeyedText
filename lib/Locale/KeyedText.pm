@@ -3,14 +3,11 @@ use utf8;
 use strict;
 use warnings;
 
-# External packages used by packages in this file, that don't export symbols:
-# (None Yet)
-
 ###########################################################################
 ###########################################################################
 
 # Constant values used by packages in this file:
-my $EMPTY_STR => q{};
+my $EMPTY_STR = q{};
 
 ###########################################################################
 ###########################################################################
@@ -31,31 +28,81 @@ my $EMPTY_STR => q{};
         $VERSION = eval $VERSION;
     }
 
-    # External packages used by the Locale::KeyedText::Message class, that do export symbols:
-    use Class::Std;
-    use Class::Std::Utils;
-
-    # Attributes of every Locale::KeyedText::Message object:
-    my %msg_key_of  :ATTR;
-        # Str
+    # has _msg_key
+        # isa Str
+        # default ''
         # The machine-readable key that uniquely ident this message.
-    my %msg_vars_of :ATTR;
-        # Hash(Str) of Any
+    sub _msg_key {
+        my $self = shift;
+        $self->{_msg_key} = $_[0] if scalar @_;
+        return $self->{_msg_key};
+    }
+
+    # has _msg_vars
+        # isa HashRef
+            # One elem per var:
+                # hkey is Str - var name
+                # hval is Any - current value for var
+        # default {}
         # Named variables for messages, if any, go here.
+    sub _msg_vars {
+        my $self = shift;
+        $self->{_msg_vars} = $_[0] if scalar @_;
+        return $self->{_msg_vars};
+    }
+
+###########################################################################
+
+sub new {
+    my ($class, @args) = @_;
+    $class = (blessed $class) || $class;
+
+    my $params = $class->BUILDARGS( @args );
+
+    my $self = bless {}, $class;
+
+    # Set attribute default values.
+    $self->_msg_key( '' );
+    $self->_msg_vars( {} );
+
+    $self->BUILD( $params );
+
+    return $self;
+}
+
+###########################################################################
+
+sub BUILDARGS {
+    my ($class, @args) = @_;
+    if (@args == 1 and ref $args[0] eq 'HASH') {
+        # Constructor was called with (possibly zero) named arguments.
+        return { %{$args[0]} };
+    }
+    elsif ((scalar @args % 2) == 0) {
+        # Constructor was called with (possibly zero) named arguments.
+        return { @args };
+    }
+    else {
+        # Constructor was called with odd number positional arguments.
+        $self->_die_with_msg( 'LKT_ARGS_BAD_PSEUDO_NAMED' );
+    }
+}
 
 ###########################################################################
 
 sub BUILD {
-    my ($self, $ident, $arg_ref) = @_;
-    my $msg_key = $arg_ref->{'msg_key'};
-    my $msg_vars_ref
-        = exists $arg_ref->{'msg_vars'} ? $arg_ref->{'msg_vars'} : {};
+    my ($self, $args) = @_;
+    my ($msg_key, $msg_vars_ref) = @{$args}{'msg_key', 'msg_vars'};
+
+    if (!defined $msg_vars_ref) {
+        $msg_vars_ref = {};
+    }
 
     $self->_assert_arg_str( 'new', ':$msg_key!', $msg_key );
     $self->_assert_arg_hash( 'new', ':%msg_vars?', $msg_vars_ref );
 
-    $msg_key_of{$ident}  = $msg_key;
-    $msg_vars_of{$ident} = {%{$msg_vars_ref}};
+    $self->_msg_key( $msg_key );
+    $self->_msg_vars( {%{$msg_vars_ref}} );
 
     return;
 }
@@ -65,8 +112,8 @@ sub BUILD {
 sub export_as_hash {
     my ($self) = @_;
     return {
-        'msg_key'  => $msg_key_of{ident $self},
-        'msg_vars' => {%{$msg_vars_of{ident $self}}},
+        'msg_key'  => $self->_msg_key(),
+        'msg_vars' => {%{$self->_msg_vars()}},
     };
 }
 
@@ -74,26 +121,26 @@ sub export_as_hash {
 
 sub get_msg_key {
     my ($self) = @_;
-    return $msg_key_of{ident $self};
+    return $self->_msg_key();
 }
 
 sub get_msg_var {
     my ($self, $var_name) = @_;
     $self->_assert_arg_str( 'get_msg_var', '$var_name!', $var_name );
-    return $msg_vars_of{ident $self}->{$var_name};
+    return $self->_msg_vars()->{$var_name};
 }
 
 sub get_msg_vars {
     my ($self) = @_;
-    return {%{$msg_vars_of{ident $self}}};
+    return {%{$self->_msg_vars()}};
 }
 
 ######################################################################
 
-sub as_debug_string : STRINGIFY {
+sub as_debug_string {
     my ($self) = @_;
-    my $msg_key = $msg_key_of{ident $self};
-    my $msg_vars = $msg_vars_of{ident $self};
+    my $msg_key = $self->_msg_key();
+    my $msg_vars = $self->_msg_vars();
     return '  Debug String of a Locale::KeyedText::Message object:'
          . "\n"
          . '    $msg_key: "' . $msg_key . '"'
@@ -107,7 +154,7 @@ sub as_debug_string : STRINGIFY {
 
 ###########################################################################
 
-sub _die_with_msg : PRIVATE {
+sub _die_with_msg {
     my ($self, $msg_key, $msg_vars_ref) = @_;
     $msg_vars_ref ||= {};
     $msg_vars_ref->{'CLASS'} = 'Locale::KeyedText::Message';
@@ -115,7 +162,7 @@ sub _die_with_msg : PRIVATE {
         'msg_key' => $msg_key, 'msg_vars' => $msg_vars_ref });
 }
 
-sub _assert_arg_str : PRIVATE {
+sub _assert_arg_str {
     my ($self, $meth, $arg, $val) = @_;
     $self->_die_with_msg( 'LKT_ARG_UNDEF',
             { 'METH' => $meth, 'ARG' => $arg } )
@@ -125,7 +172,7 @@ sub _assert_arg_str : PRIVATE {
         if $val eq $EMPTY_STR;
 }
 
-sub _assert_arg_hash : PRIVATE {
+sub _assert_arg_hash {
     my ($self, $meth, $arg, $val) = @_;
     $self->_die_with_msg( 'LKT_ARG_UNDEF',
             { 'METH' => $meth, 'ARG' => $arg } )
@@ -151,31 +198,81 @@ sub _assert_arg_hash : PRIVATE {
         $VERSION = eval $VERSION;
     }
 
-    # External packages used by the Locale::KeyedText::Translator class, that do export symbols:
-    use Class::Std;
-    use Class::Std::Utils;
-    use Scalar::Util qw( blessed );
+    use Scalar::Util 'blessed';
 
-    # Attributes of every Locale::KeyedText::Translator object:
-    my %set_names_of    :ATTR;
-        # Array of Str
+    # has _set_names
+        # isa ArrayRef
+            # One elem per set name:
+                # elem is Str
+        # default []
         # List of Template module Set Names to search.
-    my %member_names_of :ATTR;
-        # Array of Str
+    sub _set_names {
+        my $self = shift;
+        $self->{_set_names} = $_[0] if scalar @_;
+        return $self->{_set_names};
+    }
+
+    # has _member_names
+        # isa ArrayRef
+            # One elem per member name:
+                # elem is Str
+        # default []
         # List of Template module Member Names to search.
+    sub _member_names {
+        my $self = shift;
+        $self->{_member_names} = $_[0] if scalar @_;
+        return $self->{_member_names};
+    }
+
+###########################################################################
+
+sub new {
+    my ($class, @args) = @_;
+    $class = (blessed $class) || $class;
+
+    my $params = $class->BUILDARGS( @args );
+
+    my $self = bless {}, $class;
+
+    # Set attribute default values.
+    $self->_set_names( [] );
+    $self->_member_names( [] );
+
+    $self->BUILD( $params );
+
+    return $self;
+}
+
+###########################################################################
+
+sub BUILDARGS {
+    my ($class, @args) = @_;
+    if (@args == 1 and ref $args[0] eq 'HASH') {
+        # Constructor was called with (possibly zero) named arguments.
+        return { %{$args[0]} };
+    }
+    elsif ((scalar @args % 2) == 0) {
+        # Constructor was called with (possibly zero) named arguments.
+        return { @args };
+    }
+    else {
+        # Constructor was called with odd number positional arguments.
+        $self->_die_with_msg( 'LKT_ARGS_BAD_PSEUDO_NAMED' );
+    }
+}
 
 ###########################################################################
 
 sub BUILD {
-    my ($self, $ident, $arg_ref) = @_;
-    my $set_names_ref = $arg_ref->{'set_names'};
-    my $member_names_ref = $arg_ref->{'member_names'};
+    my ($self, $args) = @_;
+    my ($set_names_ref, $member_names_ref)
+        = @{$args}{'set_names', 'member_names'};
 
     $self->_assert_arg_ary( 'new', ':@set_names!', $set_names_ref );
     $self->_assert_arg_ary( 'new', ':@member_names!', $member_names_ref );
 
-    $set_names_of{$ident}    = [@{$set_names_ref}];
-    $member_names_of{$ident} = [@{$member_names_ref}];
+    $self->_set_names( [@{$set_names_ref}] );
+    $self->_member_names( [@{$member_names_ref}] );
 
     return;
 }
@@ -185,8 +282,8 @@ sub BUILD {
 sub export_as_hash {
     my ($self) = @_;
     return {
-        'set_names'    => [@{$set_names_of{ident $self}}],
-        'member_names' => [@{$member_names_of{ident $self}}],
+        'set_names'    => [@{$self->_set_names()}],
+        'member_names' => [@{$self->_member_names()}],
     };
 }
 
@@ -194,20 +291,20 @@ sub export_as_hash {
 
 sub get_set_names {
     my ($self) = @_;
-    return [@{$set_names_of{ident $self}}];
+    return [@{$self->_set_names()}];
 }
 
 sub get_member_names {
     my ($self) = @_;
-    return [@{$member_names_of{ident $self}}];
+    return [@{$self->_member_names()}];
 }
 
 ######################################################################
 
-sub as_debug_string : STRINGIFY {
+sub as_debug_string {
     my ($self) = @_;
-    my $set_names = $set_names_of{ident $self};
-    my $member_names = $member_names_of{ident $self};
+    my $set_names = $self->_set_names();
+    my $member_names = $self->_member_names();
     return '  Debug String of a Locale::KeyedText::Translator object:'
          . "\n"
          . '    @set_names: ["' . (join q{", "}, @{$set_names}) . '"]'
@@ -222,8 +319,8 @@ sub as_debug_string : STRINGIFY {
 sub get_set_member_combinations {
     my ($self) = @_;
     my @combinations = ();
-    for my $member_name (@{$member_names_of{ident $self}}) {
-        for my $set_name (@{$set_names_of{ident $self}}) {
+    for my $member_name (@{$self->_member_names()}) {
+        for my $set_name (@{$self->_set_names()}) {
             push @combinations, $set_name . $member_name;
         }
     }
@@ -283,6 +380,7 @@ sub template_module_is_loaded {
     $self->_assert_arg_str( 'template_module_is_loaded',
         '$module_name!', $module_name );
     no strict 'refs';
+    no warnings 'deprecated';  # TODO - Use a better test on next line.
     return defined %{$module_name . '::'};
 }
 
@@ -347,7 +445,7 @@ sub interpolate_vars_into_template_text {
 
 ###########################################################################
 
-sub _die_with_msg : PRIVATE {
+sub _die_with_msg {
     my ($self, $msg_key, $msg_vars_ref) = @_;
     $msg_vars_ref ||= {};
     $msg_vars_ref->{'CLASS'} = 'Locale::KeyedText::Translator';
@@ -355,7 +453,7 @@ sub _die_with_msg : PRIVATE {
         'msg_key' => $msg_key, 'msg_vars' => $msg_vars_ref });
 }
 
-sub _assert_arg_str : PRIVATE {
+sub _assert_arg_str {
     my ($self, $meth, $arg, $val) = @_;
     $self->_die_with_msg( 'LKT_ARG_UNDEF',
             { 'METH' => $meth, 'ARG' => $arg } )
@@ -365,7 +463,7 @@ sub _assert_arg_str : PRIVATE {
         if $val eq $EMPTY_STR;
 }
 
-sub _assert_arg_ary : PRIVATE {
+sub _assert_arg_ary {
     my ($self, $meth, $arg, $val) = @_;
     $self->_die_with_msg( 'LKT_ARG_UNDEF',
             { 'METH' => $meth, 'ARG' => $arg } )
@@ -386,7 +484,7 @@ sub _assert_arg_ary : PRIVATE {
     }
 }
 
-sub _assert_arg_hash : PRIVATE {
+sub _assert_arg_hash {
     my ($self, $meth, $arg, $val) = @_;
     $self->_die_with_msg( 'LKT_ARG_UNDEF',
             { 'METH' => $meth, 'ARG' => $arg } )
@@ -399,7 +497,7 @@ sub _assert_arg_hash : PRIVATE {
         if exists $val->{$EMPTY_STR};
 }
 
-sub _assert_arg_msg : PRIVATE {
+sub _assert_arg_msg {
     my ($self, $meth, $arg, $val) = @_;
     $self->_die_with_msg( 'LKT_ARG_UNDEF',
             { 'METH' => $meth, 'ARG' => $arg } )
@@ -1010,10 +1108,6 @@ I<This documentation is pending.>
 
 This file requires any version of Perl 5.x.y that is at least 5.8.1.
 
-It also requires these Perl 5 packages that are on CPAN:
-L<Class::Std-(0.0.8...)|Class::Std>,
-L<Class::Std::Utils-(0.0.2...)|Class::Std::Utils>.
-
 It also requires these Perl 5 packages that are bundled with Perl:
 L<Scalar::Util>.
 
@@ -1022,10 +1116,6 @@ L<Scalar::Util>.
 None reported.
 
 =head1 SEE ALSO
-
-These Perl 5 packages are the initial main dependents of Locale::KeyedText:
-L<Rosetta::Model>, L<Rosetta>, L<Rosetta::Validator>,
-L<Rosetta::Engine::Example>, L<Rosetta::Shell>.
 
 These Perl 5 packages work to solve similar problems as Locale::KeyedText:
 L<Locale::Maketext>, L<Locale::gettext>, L<Locale::PGetText>,

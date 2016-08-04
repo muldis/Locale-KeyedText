@@ -4,7 +4,11 @@
 
 Following is a summary of things that still need doing.
 
-* Consider raising the version number to 2.x, considering various reasons.
+* BEFORE 2.0.0 RELEASE: ADD STRINGIFY TO as_debug_string() TO REPLACE THE
+TRAIT THAT WAS LOST ALONG WITH Class-Std* DROP.
+
+* Use a more appropriate test for whether a module is loaded; the method
+currently used warns as deprecated in more modern Perls (we suppressed it).
 
 * Write the DIAGNOSTICS and other pending documentation in KeyedText.pm,
 and write the POD for en.pm, removing sections if not applicable.
