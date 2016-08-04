@@ -13,7 +13,6 @@ WriteMakefile(
 #    'LICENSE' => 'lgpl_3_0',
     'PREREQ_PM' => {
         # These mainly add features to Perl 5 that are built-in to Perl 6.
-        'Readonly' => 1.03,
         'Class::Std' => 0.000008,
         'Class::Std::Utils' => 0.000002,
         'Scalar::Util' => 0,

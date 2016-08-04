@@ -6,8 +6,7 @@ use warnings;
 ###########################################################################
 ###########################################################################
 
-use Readonly;
-Readonly my %TEXT_STRINGS => (
+my $TEXT_STRINGS = {
     'MYAPP_HELLO' => q[Light goes on!],
     'MYAPP_GOODBYE' => q[Light goes off!],
     'MYAPP_PROMPT'
@@ -18,12 +17,12 @@ Readonly my %TEXT_STRINGS => (
     'MYLIB_MYINV_NO_ARG' => q[Why you little ...!],
     'MYLIB_MYINV_BAD_ARG' => q["<GIVEN_VALUE>" isn't a county thingy!],
     'MYLIB_MYINV_RES_INF' => q[Don't you give me a big donut!],
-);
+};
 
 { package MyApp::L::Homer; # module
     sub get_text_by_key {
         my (undef, $msg_key) = @_;
-        return $TEXT_STRINGS{$msg_key};
+        return $TEXT_STRINGS->{$msg_key};
     }
 } # module MyApp::L::Homer
 

@@ -144,19 +144,18 @@ $did = t_LKT_Util->serialize( $trn11->translate_message( $msg3 ) );
 $should = q|'sharp zot', |;
 is( $did, $should, "trn11->translate_message( msg3 ) returns '$did'" );
 
-package # hide this class name from PAUSE indexer
-t_LKT_C_L_Eng;
+package t_LKT_C_L_Eng;
 
 done_testing();
 
 sub get_text_by_key {
     my (undef, $msg_key) = @_;
-    my %text_strings = (
+    my $text_strings = {
         'one' => q[{fork} shore {spoon}],
         'two' => q[sky fly high],
         'three' => q[{knife} zot],
     );
-    return $text_strings{$msg_key};
+    return $text_strings->{$msg_key};
 }
 
 1; # Magic true value required at end of a reusable file's code.

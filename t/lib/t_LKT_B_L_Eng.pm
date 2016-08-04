@@ -3,18 +3,17 @@ use utf8;
 use strict;
 use warnings;
 
-package # hide this class name from PAUSE indexer
-t_LKT_B_L_Eng;
+package t_LKT_B_L_Eng;
 
 my $xy = 'BE';
-my %text_strings = (
+my $text_strings = {
     'two' => $xy . q[ - sky pie rye],
     'three' => $xy . q[ - eat {knife}],
-);
+};
 
 sub get_text_by_key {
     my (undef, $msg_key) = @_;
-    return $text_strings{$msg_key};
+    return $text_strings->{$msg_key};
 }
 
 1; # Magic true value required at end of a reusable file's code.

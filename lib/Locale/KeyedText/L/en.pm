@@ -7,8 +7,7 @@ use warnings;
 ###########################################################################
 
 # Constant values used by packages in this file:
-use Readonly;
-Readonly my %TEXT_STRINGS => (
+my $TEXT_STRINGS = {
     # This group of strings is generic and can be used by any package:
 
     'LKT_ARG_UNDEF'
@@ -83,7 +82,7 @@ Readonly my %TEXT_STRINGS => (
         => q[<CLASS>.<METH>(): can't invoke get_text_by_key() on]
            . q[ Locale::KeyedText Template module '<TMPL_MOD_NAME>':]
            . q[ <REASON>],
-);
+};
 
 ###########################################################################
 ###########################################################################
@@ -95,7 +94,7 @@ Readonly my %TEXT_STRINGS => (
     }
     sub get_text_by_key {
         my (undef, $msg_key) = @_;
-        return $TEXT_STRINGS{$msg_key};
+        return $TEXT_STRINGS->{$msg_key};
     }
 } # module Locale::KeyedText::L::en
 
@@ -141,9 +140,6 @@ I<This documentation is pending.>
 =head1 DEPENDENCIES
 
 This file requires any version of Perl 5.x.y that is at least 5.8.1.
-
-It also requires these Perl 5 packages that are on CPAN:
-L<Readonly-(1.03...)|Readonly>.
 
 =head1 INCOMPATIBILITIES
 

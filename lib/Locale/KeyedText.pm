@@ -10,8 +10,7 @@ use warnings;
 ###########################################################################
 
 # Constant values used by packages in this file:
-use Readonly;
-Readonly my $EMPTY_STR => q{};
+my $EMPTY_STR => q{};
 
 ###########################################################################
 ###########################################################################
@@ -769,38 +768,36 @@ to make modules having a specific simple API that will serve their role.
 
 For example, inside the text Template file "MyApp/L/Eng.pm" you can have:
 
-    use Readonly;
-    Readonly my %TEXT_STRINGS => (
+    my $TEXT_STRINGS = {
         'MYAPP_HELLO' => q[Welcome to MyApp.],
         'MYAPP_GOODBYE' => q[Goodbye!],
         'MYAPP_PROMPT'
             => q[Enter a number to be inverted, or press ENTER to quit.],
         'MYAPP_RESULT' => q[The inverse of "<ORIGINAL>" is "<INVERTED>".],
-    );
+    };
 
     { package MyApp::L::Eng; # module
         sub get_text_by_key {
             my (undef, $msg_key) = @_;
-            return $TEXT_STRINGS{$msg_key};
+            return $TEXT_STRINGS->{$msg_key};
         }
     } # module MyApp::L::Eng
 
 And inside the text Template file "MyApp/L/Fre.pm" you can have:
 
-    use Readonly;
-    Readonly my %TEXT_STRINGS => (
+    my $TEXT_STRINGS = {
         'MYAPP_HELLO' => q[Bienvenue allé MyApp.],
         'MYAPP_GOODBYE' => q[Salut!],
         'MYAPP_PROMPT'
             => q[Fournir nombre être inverser, ou appuyer sur]
                . q[ ENTER être arrêter.],
         'MYAPP_RESULT' => q[Renversement "<ORIGINAL>" est "<INVERTED>".],
-    );
+    };
 
     { package MyApp::L::Fre; # module
         sub get_text_by_key {
             my (undef, $msg_key) = @_;
-            return $TEXT_STRINGS{$msg_key};
+            return $TEXT_STRINGS->{$msg_key};
         }
     } # module MyApp::L::Fre
 
@@ -1012,9 +1009,6 @@ I<This documentation is pending.>
 =head1 DEPENDENCIES
 
 This file requires any version of Perl 5.x.y that is at least 5.8.1.
-
-It also requires these Perl 5 packages that are on CPAN:
-L<Readonly-(1.03...)|Readonly>.
 
 It also requires these Perl 5 packages that are on CPAN:
 L<Class::Std-(0.0.8...)|Class::Std>,

@@ -6,8 +6,7 @@ use warnings;
 # This module is used when testing Locale::KeyedText.
 # It contains some utility methods used by the various LKT_*.t scripts.
 
-package # hide this class name from PAUSE indexer
-t_LKT_Util;
+package t_LKT_Util;
 
 ######################################################################
 
