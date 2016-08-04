@@ -1,6 +1,10 @@
                              Locale-KeyedText
 ---------------------------------------------------------------------------
 
+2016-08-xx   Darren Duncan <perl@DarrenDuncan.net>
+
+    * Update Locale-KeyedText to modern standards.  Details pending...
+
 2006-05-01   Darren Duncan <perl@DarrenDuncan.net>
 
     * Locale-KeyedText Release 1.73.0/1.073000 (SVN r1261).
