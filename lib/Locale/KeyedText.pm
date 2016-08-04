@@ -619,6 +619,9 @@ rather returns its results for calling code to output as it sees fit.  It
 also does not make direct use of environment variables, which can aid in
 portability.
 
+Locale::KeyedText itself is trivially easy to install, since it is written
+in pure Perl and it has no non-Core dependencies.
+
 Practically speaking, Locale::KeyedText doesn't actually do a lot
 internally; it exists mainly to document a certain localization methodology
 in an easily accessable manner, such that would not be possible if its
@@ -629,8 +632,7 @@ localization methodology that is described here, and hence provides these
 benefits to developers and users alike.
 
 For some practical examples of Locale::KeyedText in use, see the /examples
-directory of this distribution.  Or, see my dependent CPAN packages whose
-problem domain is databases and/or SQL.
+directory of this distribution.
 
 =head2 How It Works
 
@@ -1108,8 +1110,8 @@ I<This documentation is pending.>
 
 This file requires any version of Perl 5.x.y that is at least 5.8.1.
 
-It also requires these Perl 5 packages that are bundled with Perl:
-L<Scalar::Util>.
+It also requires these Perl 5 packages that are available both bundled with
+Perl 5.8.1+ and on CPAN: L<Scalar::Util-ver(1.13..*)|Scalar::Util>.
 
 =head1 INCOMPATIBILITIES
 

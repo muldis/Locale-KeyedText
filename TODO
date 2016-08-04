@@ -7,6 +7,9 @@ Following is a summary of things that still need doing.
 * BEFORE 2.0.0 RELEASE: ADD STRINGIFY TO as_debug_string() TO REPLACE THE
 TRAIT THAT WAS LOST ALONG WITH Class-Std* DROP.
 
+* Update INTERFACE docs to be more like Set::Relation, eg each class gets
+an h1 and each method gets an h2.
+
 * Use a more appropriate test for whether a module is loaded; the method
 currently used warns as deprecated in more modern Perls (we suppressed it).
 

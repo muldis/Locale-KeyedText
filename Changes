@@ -24,6 +24,11 @@
     dual-life CPAN module Test::More version 0.92 or newer.  This release
     is also about bringing other aspects of modernity to this distribution.
 
+    * Note that despite the significant internal refactoring or
+    reimplementation of Locale::KeyedText, release 2.0.0 should be entirely
+    backwards-compatible; any code written for release 1.72.0+, or even
+    1.70.0+, should work with it unchanged.
+
     * This distribution has excised its direct external dependencies on the
     modules Class::Std, Class::Std::Utils, Readonly, "only" and "version".
     The dependencies on those were mostly added with release 1.06_3 per
@@ -62,6 +67,13 @@
     the 2 files LICENSE/LGPL and LICENSE/GPL rather than 1 file "LGPL".
 
     * Update AUTHOR emails from perl@ to darren@.
+
+    * Rewrote most of the Makefile.PL (and META.yml) to make its format
+    more modern, in particular by distinguishing between dependencies that
+    are needed to use the Locale::KeyedText module and those needed only
+    for testing it or for configuring the distribution; previously, the
+    dependencies needed only for testing were treated as if necessary to
+    use Locale::KeyedText itself; also added a list of "resources" urls.
 
     * Modernize the headings of the distribution files {Changes, README,
     TODO} and tweak the INSTALL file.  Modernize the content of the README
