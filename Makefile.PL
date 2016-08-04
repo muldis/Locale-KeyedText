@@ -7,7 +7,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     'NAME' => 'Locale::KeyedText',
-    'VERSION' => '1.73.0',
+    'VERSION' => '2.0.0',
     'ABSTRACT' => 'Refer to user messages in programs by keys',
     'AUTHOR' => 'Darren Duncan <darren@DarrenDuncan.net>',
 #    'LICENSE' => 'lgpl_3_0',

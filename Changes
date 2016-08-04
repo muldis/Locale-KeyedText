@@ -4,8 +4,15 @@
 
 2016-08-xx
 
-    * Locale::KeyedText version 1.74.0 for Perl 5 is released on CPAN as
-    Locale-KeyedText-1.74.0.tar.gz.
+    * Locale::KeyedText version 2.0.0 for Perl 5 is released on CPAN as
+    Locale-KeyedText-2.0.0.tar.gz.
+
+    * This is the first release of Locale::KeyedText after a full decade
+    with no development, and it has a new major version largely due to the
+    module having gotten a number of large incompatible changes since the
+    early 1.x releases (particularly in release 1.06_3).
+
+    * New code file versions are: KeyedText.pm 2.0.0 and en.pm 2.0.0.
 
     * The first main purpose of this release is making Locale::KeyedText
     substantially lighter in its external dependencies, so that it can be

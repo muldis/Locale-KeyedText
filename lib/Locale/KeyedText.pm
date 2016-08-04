@@ -18,7 +18,7 @@ Readonly my $EMPTY_STR => q{};
 
 { package Locale::KeyedText; # package
     BEGIN {
-        our $VERSION = '1.073000';
+        our $VERSION = '2.000000';
         $VERSION = eval $VERSION;
     }
 } # package Locale::KeyedText
@@ -28,7 +28,7 @@ Readonly my $EMPTY_STR => q{};
 
 { package Locale::KeyedText::Message; # class
     BEGIN {
-        our $VERSION = '1.073000';
+        our $VERSION = '2.000000';
         $VERSION = eval $VERSION;
     }
 
@@ -148,7 +148,7 @@ sub _assert_arg_hash : PRIVATE {
 
 { package Locale::KeyedText::Translator; # class
     BEGIN {
-        our $VERSION = '1.073000';
+        our $VERSION = '2.000000';
         $VERSION = eval $VERSION;
     }
 
@@ -432,7 +432,7 @@ Refer to user messages in programs by keys
 
 =head1 VERSION
 
-This document describes Locale::KeyedText version 1.73.0.
+This document describes Locale::KeyedText version 2.0.0.
 
 It also describes the same-number versions of Locale::KeyedText::Message
 ("Message") and Locale::KeyedText::Translator ("Translator").

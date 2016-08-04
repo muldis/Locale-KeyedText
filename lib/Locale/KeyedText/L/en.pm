@@ -90,7 +90,7 @@ Readonly my %TEXT_STRINGS => (
 
 { package Locale::KeyedText::L::en; # module
     BEGIN {
-        our $VERSION = '1.000001';
+        our $VERSION = '2.000000';
         $VERSION = eval $VERSION;
     }
     sub get_text_by_key {
@@ -116,7 +116,7 @@ Localization of Locale::KeyedText for English
 
 =head1 VERSION
 
-This document describes Locale::KeyedText::L::en version 1.0.1.
+This document describes Locale::KeyedText::L::en version 2.0.0.
 
 =head1 SYNOPSIS
 

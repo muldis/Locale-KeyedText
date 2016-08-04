@@ -6,11 +6,11 @@ use warnings;
 use Test::More 0.92;
 
 use_ok( 'Locale::KeyedText' );
-is( $Locale::KeyedText::VERSION, 1.073000,
+is( $Locale::KeyedText::VERSION, 2.000000,
     'Locale::KeyedText is the correct version' );
 
 use_ok( 'Locale::KeyedText::L::en' );
-is( $Locale::KeyedText::L::en::VERSION, 1.000001,
+is( $Locale::KeyedText::L::en::VERSION, 2.000000,
     'Locale::KeyedText::L::en is the correct version' );
 
 use lib 't/lib';
