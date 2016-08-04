@@ -7,13 +7,17 @@
     * Locale::KeyedText version 1.74.0 for Perl 5 is released on CPAN as
     Locale-KeyedText-1.74.0.tar.gz.
 
-    * The main purpose of this release is making Locale::KeyedText
+    * The first main purpose of this release is making Locale::KeyedText
     substantially lighter in its external dependencies, so that it can be
     installed and used with a relative minimum of overhead.  This release
     is also about bringing other aspects of modernity to this distribution.
 
     * This distribution has excised its direct external dependencies on the
     modules "only".
+
+    * The second main purpose of this release is bringing back the thorough
+    (such as it was) test suite that came with Locale::KeyedText up through
+    release 1.060002 and was entirely purged with release 1.06_3.
 
     * Locale::KeyedText is now licensed under the terms of the GNU Lesser
     General Public License (LGPL) version 3 or later, rather than version
