@@ -1,5 +1,7 @@
-#!perl
-use 5.008001; use utf8; use strict; use warnings;
+use 5.008001;
+use utf8;
+use strict;
+use warnings;
 
 use Test::More;
 
@@ -135,4 +137,4 @@ $did = $trn1->as_string();
 $should = 'SETS: go::o, ::har; MEMBERS: w::er, thr::';
 is( $did, $should, "on init trn1->as_string() returns '$did'" );
 
-1;
+1; # Magic true value required at end of a reusable file's code.

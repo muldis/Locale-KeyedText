@@ -13,7 +13,9 @@
     is also about bringing other aspects of modernity to this distribution.
 
     * This distribution has excised its direct external dependencies on the
-    modules "only".
+    modules "only" and "version".
+
+    * Removed the Perl shebang line "#!perl" from every Perl file with one.
 
     * The second main purpose of this release is bringing back the thorough
     (such as it was) test suite that came with Locale::KeyedText up through

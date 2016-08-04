@@ -1,5 +1,7 @@
-#!perl
-use 5.008001; use utf8; use strict; use warnings;
+use 5.008001;
+use utf8;
+use strict;
+use warnings;
 
 use Test::More;
 
@@ -157,4 +159,4 @@ sub get_text_by_key {
     return $text_strings{$msg_key};
 }
 
-1;
+1; # Magic true value required at end of a reusable file's code.

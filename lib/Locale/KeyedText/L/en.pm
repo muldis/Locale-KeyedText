@@ -1,4 +1,3 @@
-#!perl
 use 5.008001;
 use utf8;
 use strict;
@@ -90,7 +89,10 @@ Readonly my %TEXT_STRINGS => (
 ###########################################################################
 
 { package Locale::KeyedText::L::en; # module
-    use version; our $VERSION = qv('1.0.1');
+    BEGIN {
+        our $VERSION = '1.000001';
+        $VERSION = eval $VERSION;
+    }
     sub get_text_by_key {
         my (undef, $msg_key) = @_;
         return $TEXT_STRINGS{$msg_key};
@@ -100,7 +102,7 @@ Readonly my %TEXT_STRINGS => (
 ###########################################################################
 ###########################################################################
 
-1; # Magic true value required at end of a reuseable file's code.
+1; # Magic true value required at end of a reusable file's code.
 __END__
 
 =pod
@@ -139,9 +141,6 @@ I<This documentation is pending.>
 =head1 DEPENDENCIES
 
 This file requires any version of Perl 5.x.y that is at least 5.8.1.
-
-It also requires the Perl 5 package L<version>, which would
-conceptually be built-in to Perl, but aren't, so they are on CPAN instead.
 
 It also requires these Perl 5 packages that are on CPAN:
 L<Readonly-(1.03...)|Readonly>.

@@ -1,4 +1,3 @@
-#!perl
 use 5.008001;
 use utf8;
 use strict;
@@ -72,4 +71,4 @@ Readonly my %TEXT_STRINGS_F => (
 ###########################################################################
 ###########################################################################
 
-1; # Magic true value required at end of a reuseable file's code.
+1; # Magic true value required at end of a reusable file's code.

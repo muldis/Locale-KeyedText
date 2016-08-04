@@ -1,5 +1,7 @@
-#!perl
-use 5.008001; use utf8; use strict; use warnings;
+use 5.008001;
+use utf8;
+use strict;
+use warnings;
 
 use Test::More;
 
@@ -101,4 +103,4 @@ $did = t_LKT_Util->serialize( $msg1->get_message_variables() );
 $should = q|{ '0' => '1', 'bar' => 'baz', 'c' => '-', 'y' => '0', 'z' => q{}, }, |;
 is( $did, $should, "on init msg1->get_message_variables() returns '$did'" );
 
-1;
+1; # Magic true value required at end of a reusable file's code.

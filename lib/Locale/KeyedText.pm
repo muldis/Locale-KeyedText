@@ -1,4 +1,3 @@
-#!perl
 use 5.008001;
 use utf8;
 use strict;
@@ -18,14 +17,20 @@ Readonly my $EMPTY_STR => q{};
 ###########################################################################
 
 { package Locale::KeyedText; # package
-    use version; our $VERSION = qv('1.73.0');
-    # Note: This given version applies to all of this file's packages.
+    BEGIN {
+        our $VERSION = '1.073000';
+        $VERSION = eval $VERSION;
+    }
 } # package Locale::KeyedText
 
 ###########################################################################
 ###########################################################################
 
 { package Locale::KeyedText::Message; # class
+    BEGIN {
+        our $VERSION = '1.073000';
+        $VERSION = eval $VERSION;
+    }
 
     # External packages used by the Locale::KeyedText::Message class, that do export symbols:
     use Class::Std;
@@ -142,6 +147,10 @@ sub _assert_arg_hash : PRIVATE {
 ###########################################################################
 
 { package Locale::KeyedText::Translator; # class
+    BEGIN {
+        our $VERSION = '1.073000';
+        $VERSION = eval $VERSION;
+    }
 
     # External packages used by the Locale::KeyedText::Translator class, that do export symbols:
     use Class::Std;
@@ -409,7 +418,7 @@ sub _assert_arg_msg : PRIVATE {
 ###########################################################################
 ###########################################################################
 
-1; # Magic true value required at end of a reuseable file's code.
+1; # Magic true value required at end of a reusable file's code.
 __END__
 
 =pod
@@ -1003,9 +1012,6 @@ I<This documentation is pending.>
 =head1 DEPENDENCIES
 
 This file requires any version of Perl 5.x.y that is at least 5.8.1.
-
-It also requires the Perl 5 package L<version>, which would
-conceptually be built-in to Perl, but aren't, so they are on CPAN instead.
 
 It also requires these Perl 5 packages that are on CPAN:
 L<Readonly-(1.03...)|Readonly>.

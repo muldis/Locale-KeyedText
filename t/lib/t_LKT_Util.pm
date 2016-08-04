@@ -1,5 +1,7 @@
-#!perl
-use 5.008001; use utf8; use strict; use warnings;
+use 5.008001;
+use utf8;
+use strict;
+use warnings;
 
 # This module is used when testing Locale::KeyedText.
 # It contains some utility methods used by the various LKT_*.t scripts.
@@ -38,4 +40,4 @@ sub serialize {
 
 ######################################################################
 
-1;
+1; # Magic true value required at end of a reusable file's code.
