@@ -1,7 +1,8 @@
-                             Locale-KeyedText
+                             Locale::KeyedText
+                                   TODO
 ---------------------------------------------------------------------------
 
-TODO
+Following is a summary of things that still need doing.
 
 * Consider raising the version number to 2.x, considering the wide scale
 compatability breaks between the rewrite and previous stable releases.

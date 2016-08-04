@@ -1,4 +1,5 @@
-                             Locale-KeyedText
+                             Locale::KeyedText
+                                  Changes
 ---------------------------------------------------------------------------
 
 2016-08-xx
@@ -19,7 +20,11 @@
     2.1+ of the same license.  The text of the updated license is now in
     the 2 files LICENSE/LGPL and LICENSE/GPL rather than 1 file "LGPL".
 
-    * Update AUTHOR email from perl@ to darren@.
+    * Update AUTHOR emails from perl@ to darren@.
+
+    * Modernize the headings of the distribution files {Changes, README,
+    TODO} and tweak the INSTALL file.  Modernize the content of the README
+    file on Locale::KeyedText version control or other resources are.
 
     * Incremented all copyright year range-ends to 2016 (from 2006).
 
