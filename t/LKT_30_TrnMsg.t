@@ -3,9 +3,7 @@ use utf8;
 use strict;
 use warnings;
 
-use Test::More;
-
-plan( 'tests' => 34 );
+use Test::More 0.92;
 
 use lib 't/lib';
 use t_LKT_Util;
@@ -148,6 +146,8 @@ is( $did, $should, "trn11->translate_message( msg3 ) returns '$did'" );
 
 package # hide this class name from PAUSE indexer
 t_LKT_C_L_Eng;
+
+done_testing();
 
 sub get_text_by_key {
     my (undef, $msg_key) = @_;

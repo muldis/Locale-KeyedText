@@ -20,7 +20,7 @@ WriteMakefile(
         # These are used in both the Perl 5 and Perl 6 versions.
         #   (None yet, if ever.)
         # These mainly are for the test suite.
-        'Test::More' => 0,
+        'Test::More' => '0.92', # bundled with Perl 5.10.1, min 0.88 needed
     },
 );
 

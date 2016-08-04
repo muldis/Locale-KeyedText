@@ -3,9 +3,7 @@ use utf8;
 use strict;
 use warnings;
 
-use Test::More;
-
-plan( 'tests' => 24 );
+use Test::More 0.92;
 
 use lib 't/lib';
 use t_LKT_Util;
@@ -102,5 +100,7 @@ is( $did, $should, "on init msg1->get_message_variable( 'bar' ) returns '$did'" 
 $did = t_LKT_Util->serialize( $msg1->get_message_variables() );
 $should = q|{ '0' => '1', 'bar' => 'baz', 'c' => '-', 'y' => '0', 'z' => q{}, }, |;
 is( $did, $should, "on init msg1->get_message_variables() returns '$did'" );
+
+done_testing();
 
 1; # Magic true value required at end of a reusable file's code.

@@ -3,9 +3,7 @@ use utf8;
 use strict;
 use warnings;
 
-use Test::More;
-
-plan( 'tests' => 15 );
+use Test::More 0.92;
 
 use_ok( 'Locale::KeyedText' );
 is( $Locale::KeyedText::VERSION, 1.073000,
@@ -32,5 +30,7 @@ can_ok( 't_LKT_B_L_Eng', 'get_text_by_key' );
 
 use_ok( 't_LKT_B_L_Fre' );
 can_ok( 't_LKT_B_L_Fre', 'get_text_by_key' );
+
+done_testing();
 
 1; # Magic true value required at end of a reusable file's code.

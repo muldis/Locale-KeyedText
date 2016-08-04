@@ -3,9 +3,7 @@ use utf8;
 use strict;
 use warnings;
 
-use Test::More;
-
-plan( 'tests' => 34 );
+use Test::More 0.92;
 
 use lib 't/lib';
 use t_LKT_Util;
@@ -136,5 +134,7 @@ isa_ok( $trn1, 'Locale::KeyedText::Translator',
 $did = $trn1->as_string();
 $should = 'SETS: go::o, ::har; MEMBERS: w::er, thr::';
 is( $did, $should, "on init trn1->as_string() returns '$did'" );
+
+done_testing();
 
 1; # Magic true value required at end of a reusable file's code.
