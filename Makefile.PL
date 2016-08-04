@@ -20,8 +20,8 @@ WriteMakefile(
     'NAME' => 'Locale::KeyedText',
     'VERSION_FROM' => 'lib/Locale/KeyedText.pm', # finds $VERSION
     'ABSTRACT' => 'Refer to user messages in programs by keys',
-    'AUTHOR' => 'Darren R. Duncan <perl@DarrenDuncan.net>',
-#    'LICENSE' => 'lgpl',
+    'AUTHOR' => 'Darren Duncan <darren@DarrenDuncan.net>',
+#    'LICENSE' => 'lgpl_3_0',
     'PREREQ_PM' => {
         # These mainly add features to Perl 5 that are built-in to Perl 6.
         'version' => 0.57,

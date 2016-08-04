@@ -1,7 +1,7 @@
                              Locale-KeyedText
 ---------------------------------------------------------------------------
 
-2016-08-xx   Darren Duncan <perl@DarrenDuncan.net>
+2016-08-xx
 
     * Locale::KeyedText version 1.74.0 for Perl 5 is released on CPAN as
     Locale-KeyedText-1.74.0.tar.gz.
@@ -14,7 +14,16 @@
     * This distribution has excised its direct external dependencies on the
     modules "only".
 
-2006-05-01   Darren Duncan <perl@DarrenDuncan.net>
+    * Locale::KeyedText is now licensed under the terms of the GNU Lesser
+    General Public License (LGPL) version 3 or later, rather than version
+    2.1+ of the same license.  The text of the updated license is now in
+    the 2 files LICENSE/LGPL and LICENSE/GPL rather than 1 file "LGPL".
+
+    * Update AUTHOR email from perl@ to darren@.
+
+    * Incremented all copyright year range-ends to 2016 (from 2006).
+
+2006-05-01
 
     * Locale-KeyedText Release 1.73.0/1.073000 (SVN r1261).
 
@@ -45,7 +54,7 @@
 
     * In KeyedText.pm and en.pm both, minor SEE ALSO update.
 
-2006-02-01   Darren Duncan <perl@DarrenDuncan.net>
+2006-02-01
 
     * Locale-KeyedText Release 1.72.1/1.072001 (SVN r1203).
 
@@ -73,7 +82,7 @@
 
     * There were no other changes of any kind.
 
-2006-01-02   Darren Duncan <perl@DarrenDuncan.net>
+2006-01-02
 
     * Locale-KeyedText Release 1.72.0/1.072000 (SVN r1162).
 
@@ -128,7 +137,7 @@
 
     * Multiple updates in the TODO file.
 
-2005-12-13   Darren Duncan <perl@DarrenDuncan.net>
+2005-12-13
 
     * Locale-KeyedText Release 1.71.0/1.071000 (SVN r1145).
 
@@ -149,7 +158,7 @@
 
     * Minor README update.
 
-2005-11-24   Darren Duncan <perl@DarrenDuncan.net>
+2005-11-24
 
     * Locale-KeyedText Release 1.70.0/1.070000 (SVN r1090).
 
@@ -164,7 +173,7 @@
     * This release is identical to release 1.6_5 except for the version
     change and a few minor documentation updates and fixes.
 
-2005-11-18   Darren Duncan <perl@DarrenDuncan.net>
+2005-11-18
 
     * Locale-KeyedText Release 1.6_5/1.006_005 (SVN r1060).
 
@@ -179,7 +188,7 @@
 
     * Renamed the ReadMe file to README and updated it also.
 
-2005-11-11   Darren Duncan <perl@DarrenDuncan.net>
+2005-11-11
 
     * Locale-KeyedText Release 1.6_4/1.006_004 (SVN r1049).
 
@@ -228,7 +237,7 @@
 
     * Removed several TODO items, which are now satisfied.
 
-2005-10-27   Darren Duncan <perl@DarrenDuncan.net>
+2005-10-27
 
     * Locale-KeyedText Release 1.6_3/1.006_003 (SVN r996).
 
@@ -292,7 +301,7 @@
 
     * Rewrote the TODO file.  Most of its items will be addressed by 1.7.0.
 
-2005-09-28   Darren Duncan <perl@DarrenDuncan.net>
+2005-09-28
 
     * Locale-KeyedText Release 1.6.2/1.006002 (SVN r878).
 
@@ -370,7 +379,7 @@
 
     * Other miscellaneous code line alignments and splitting.
 
-2005-09-12   Darren Duncan <perl@DarrenDuncan.net>
+2005-09-12
 
     * Locale-KeyedText Release 1.6.1/1.006001 (SVN r808).
 
@@ -389,7 +398,7 @@
     also added references to when all 'Rosetta developer release' (#s 1-3)
     were.
 
-2005-09-08   Darren Duncan <perl@DarrenDuncan.net>
+2005-09-08
 
     * Locale-KeyedText Release 1.6.0/1.006000 (SVN r787), containing
     Locale::KeyedText 1.6.0, was released on CPAN.  This is the first
@@ -399,14 +408,14 @@
     * These were the current versions cited by the public announcement for
     Rosetta/SQL-Routine developer release #3.
 
-2005-06-14   Darren Duncan <perl@DarrenDuncan.net>
+2005-06-14
 
     * Locale-KeyedText Release 1.05/1.050000, containing Locale::KeyedText
     1.05, was released on CPAN.  This is the last release of this
     distribution and its modules for which they had floating point version
     numbers, rather than 3-part version numbers.
 
-2005-04-03   Darren Duncan <perl@DarrenDuncan.net>
+2005-04-03
 
     * Locale-KeyedText Release 1.03, containing Locale::KeyedText 1.03, was
     released on CPAN.
@@ -414,13 +423,13 @@
     * These were the current versions cited by the public announcement for
     SQL-Routine/Rosetta developer release #2.
 
-2004-09-23   Darren Duncan <perl@DarrenDuncan.net>
+2004-09-23
 
     * Locale-KeyedText Release 1.00, containing Locale::KeyedText 1.00, was
     released on CPAN.  This is the first release of this module following
     its official registration on the Perl 5 Module List.
 
-2004-09-23   Darren Duncan <perl@DarrenDuncan.net>
+2004-09-23
 
     The next version of the Module List will list the following module:
 
@@ -437,13 +446,13 @@
     Locale::
     ::KeyedText       RdpOl Refer to user messages in programs by keys   DUNCAND
 
-2004-08-31   Darren Duncan <perl@DarrenDuncan.net>
+2004-08-31
 
     * Locale-KeyedText Release 0.07, containing Locale::KeyedText 0.07, was
     released on CPAN.  This is the last release of this module prior to its
     official registration on the Perl 5 Module List.
 
-2004-08-05   Darren Duncan <perl@DarrenDuncan.net>
+2004-08-05
 
     * Locale-KeyedText Release 0.06, containing Locale::KeyedText 0.06, was
     released on CPAN.
@@ -451,7 +460,7 @@
     * These were the current versions cited by the public announcement for
     Rosetta/SQL-SyntaxModel developer release #1.
 
-2004-01-15   Darren Duncan <perl@DarrenDuncan.net>
+2004-01-15
 
     * Locale-KeyedText Release 0.01, containing Locale::KeyedText 0.01, was
     released on CPAN.  This is the first release of any distribution to
@@ -460,28 +469,28 @@
     Locale-KeyedText distribution was in the form of executable code, and
     not just design documentation.
 
-2003-09-29   Darren Duncan <perl@DarrenDuncan.net>
+2003-09-29
 
     * Began active code development on the proposed Locale::KeyedText
     module.
 
     * Module based on a template created by h2xs 1.18.
 
-2003-06-03   Darren Duncan <perl@DarrenDuncan.net>
+2003-06-03
 
     * Rosetta Release 0.11 was released on CPAN.  This is the first release
     of any distribution where the proposal documentation for
     Locale::KeyedText uses that name for it; it was renamed from
     Rosetta::Locale.
 
-2003-05-28   Darren Duncan <perl@DarrenDuncan.net>
+2003-05-28
 
     * Rosetta Release 0.10 was released on CPAN.  This is the last release
     of any distribution for which the documented name of the proposed
     module that became Locale::KeyedText was given the name
     Rosetta::Locale.
 
-2003-03-04   Darren Duncan <perl@DarrenDuncan.net>
+2003-03-04
 
     * Rosetta Release 0.05 was released on CPAN.  This is the first release
     of any distribution to contain design documentation that became the

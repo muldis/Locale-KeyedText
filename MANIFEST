@@ -10,9 +10,10 @@ examples/inverter2/MyApp.pl
 examples/inverter2/MyApp/L/Homer.pm
 examples/inverter2/MyLib.pm
 INSTALL
-LGPL
 lib/Locale/KeyedText.pm
 lib/Locale/KeyedText/L/en.pm
+LICENSE/GPL
+LICENSE/LGPL
 Makefile.PL
 MANIFEST
 README

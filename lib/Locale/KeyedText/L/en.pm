@@ -160,15 +160,13 @@ I<This documentation is pending.>
 
 =head1 AUTHOR
 
-Darren R. Duncan (C<perl@DarrenDuncan.net>)
+Darren Duncan (C<darren@DarrenDuncan.net>)
 
-=head1 LICENCE AND COPYRIGHT
+=head1 LICENSE AND COPYRIGHT
 
-This file is part of the Locale::KeyedText library.
+Locale::KeyedText is Copyright © 2003-2016, Muldis Data Systems, Inc.
 
-Locale::KeyedText is Copyright (c) 2003-2006, Darren R. Duncan.
-
-See the LICENCE AND COPYRIGHT of L<Locale::KeyedText> for details.
+See the LICENSE AND COPYRIGHT of L<Locale::KeyedText> for details.
 
 =head1 ACKNOWLEDGEMENTS
 

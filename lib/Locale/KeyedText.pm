@@ -1037,38 +1037,34 @@ I<This documentation is pending.>
 
 =head1 AUTHOR
 
-Darren R. Duncan (C<perl@DarrenDuncan.net>)
+Darren Duncan (C<darren@DarrenDuncan.net>)
 
-=head1 LICENCE AND COPYRIGHT
+=head1 LICENSE AND COPYRIGHT
 
-This file is part of the Locale::KeyedText library.
+Locale::KeyedText is Copyright © 2003-2016, Muldis Data Systems, Inc.
 
-Locale::KeyedText is Copyright (c) 2003-2006, Darren R. Duncan.  All rights
-reserved.  Address comments, suggestions, and bug reports to
-C<perl@DarrenDuncan.net>, or visit L<http://www.DarrenDuncan.net/> for more
-information.
+L<http://www.muldis.com/>
 
 Locale::KeyedText is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License (LGPL) as
 published by the Free Software Foundation (L<http://www.fsf.org/>); either
-version 2.1 of the License, or (at your option) any later version.  You
+version 3 of the License, or (at your option) any later version.  You
 should have received a copy of the LGPL as part of the Locale::KeyedText
-distribution, in the file named "LGPL"; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA.
+distribution, in the files named "LICENSE/LGPL" and "LICENSE/GPL" (the
+LGPLv3 is defined as the terms of the GPLv3 plus extra permissions); if
+not, see L<http://www.gnu.org/licenses/>.
 
 Any versions of Locale::KeyedText that you modify and distribute must carry
 prominent notices stating that you changed the files and the date of any
 changes, in addition to preserving this original copyright notice and other
-credits. Locale::KeyedText is distributed in the hope that it will be
+credits.  Locale::KeyedText is distributed in the hope that it will be
 useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the LGPL for more
-details.
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-While it is by no means required, the copyright holders of
-Locale::KeyedText would appreciate being informed any time you create a
-modified version of Locale::KeyedText that you are willing to distribute,
-because that is a practical way of suggesting improvements to the standard
-version.
+While it is by no means required, the copyright holder of Locale::KeyedText
+would appreciate being informed any time you create a modified version of
+Locale::KeyedText that you are willing to distribute, because that is a
+practical way of suggesting improvements to the standard version.
 
 =head1 ACKNOWLEDGEMENTS
 
