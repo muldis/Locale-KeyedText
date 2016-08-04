@@ -11,7 +11,7 @@ use warnings;
 ###########################################################################
 
 # Constant values used by packages in this file:
-use only 'Readonly' => '1.03-';
+use Readonly;
 Readonly my $EMPTY_STR => q{};
 
 ###########################################################################
@@ -28,8 +28,8 @@ Readonly my $EMPTY_STR => q{};
 { package Locale::KeyedText::Message; # class
 
     # External packages used by the Locale::KeyedText::Message class, that do export symbols:
-    use only 'Class::Std' => '0.0.8-';
-    use only 'Class::Std::Utils' => '0.0.2-';
+    use Class::Std;
+    use Class::Std::Utils;
 
     # Attributes of every Locale::KeyedText::Message object:
     my %msg_key_of  :ATTR;
@@ -144,8 +144,8 @@ sub _assert_arg_hash : PRIVATE {
 { package Locale::KeyedText::Translator; # class
 
     # External packages used by the Locale::KeyedText::Translator class, that do export symbols:
-    use only 'Class::Std' => '0.0.8-';
-    use only 'Class::Std::Utils' => '0.0.2-';
+    use Class::Std;
+    use Class::Std::Utils;
     use Scalar::Util qw( blessed );
 
     # Attributes of every Locale::KeyedText::Translator object:
@@ -1004,7 +1004,7 @@ I<This documentation is pending.>
 
 This file requires any version of Perl 5.x.y that is at least 5.8.1.
 
-It also requires the Perl 5 packages L<version> and L<only>, which would
+It also requires the Perl 5 package L<version>, which would
 conceptually be built-in to Perl, but aren't, so they are on CPAN instead.
 
 It also requires these Perl 5 packages that are on CPAN:

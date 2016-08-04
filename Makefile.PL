@@ -6,9 +6,6 @@ use warnings;
 
 warn q{
 ---------------------------------------------------------------------------
-  Please ignore any test failures when installing the 'only' module, which
-  this distribution depends on; 'only' still works correctly for my needs.
-
   You can also ignore any warnings during installation about the use of
   "=encoding utf8" in the pod documentation.
 
@@ -28,7 +25,6 @@ WriteMakefile(
     'PREREQ_PM' => {
         # These mainly add features to Perl 5 that are built-in to Perl 6.
         'version' => 0.57,
-        'only' => 0,
         'Readonly' => 1.03,
         'Class::Std' => 0.000008,
         'Class::Std::Utils' => 0.000002,

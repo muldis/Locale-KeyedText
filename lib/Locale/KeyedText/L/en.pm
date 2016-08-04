@@ -8,7 +8,7 @@ use warnings;
 ###########################################################################
 
 # Constant values used by packages in this file:
-use only 'Readonly' => '1.03-';
+use Readonly;
 Readonly my %TEXT_STRINGS => (
     # This group of strings is generic and can be used by any package:
 
@@ -140,7 +140,7 @@ I<This documentation is pending.>
 
 This file requires any version of Perl 5.x.y that is at least 5.8.1.
 
-It also requires the Perl 5 packages L<version> and L<only>, which would
+It also requires the Perl 5 package L<version>, which would
 conceptually be built-in to Perl, but aren't, so they are on CPAN instead.
 
 It also requires these Perl 5 packages that are on CPAN:

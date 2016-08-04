@@ -3,7 +3,16 @@
 
 2016-08-xx   Darren Duncan <perl@DarrenDuncan.net>
 
-    * Update Locale-KeyedText to modern standards.  Details pending...
+    * Locale::KeyedText version 1.74.0 for Perl 5 is released on CPAN as
+    Locale-KeyedText-1.74.0.tar.gz.
+
+    * The main purpose of this release is making Locale::KeyedText
+    substantially lighter in its external dependencies, so that it can be
+    installed and used with a relative minimum of overhead.  This release
+    is also about bringing other aspects of modernity to this distribution.
+
+    * This distribution has excised its direct external dependencies on the
+    modules "only".
 
 2006-05-01   Darren Duncan <perl@DarrenDuncan.net>
 
