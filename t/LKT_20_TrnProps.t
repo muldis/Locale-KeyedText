@@ -13,21 +13,17 @@ t_LKT_Util->message( 'testing new_translator() and most Translator object method
 
 my ($did, $should, $trn1);
 
-$did = t_LKT_Util->serialize( t_LKT_Util->new_translator( [q{e}], undef ) );
-$should = 'undef, ';
-is( $did, $should, "t_LKT_Util->new_translator( [q{e}], undef ) returns '$did'" );
+eval { t_LKT_Util->new_translator( [q{e}], undef ) };
+ok( $@, "t_LKT_Util->new_translator( [q{e}], undef ) died" );
 
-$did = t_LKT_Util->serialize( t_LKT_Util->new_translator( undef, [q{e}] ) );
-$should = 'undef, ';
-is( $did, $should, "t_LKT_Util->new_translator( undef, [q{e}] ) returns '$did'" );
+eval { t_LKT_Util->new_translator( undef, [q{e}] ) };
+ok( $@, "t_LKT_Util->new_translator( undef, [q{e}] ) died" );
 
-$did = t_LKT_Util->serialize( t_LKT_Util->new_translator( [q{e}], [] ) );
-$should = 'undef, ';
-is( $did, $should, "t_LKT_Util->new_translator( [q{e}], [] ) returns '$did'" );
+eval { t_LKT_Util->new_translator( [q{e}], [] ) };
+ok( $@, "t_LKT_Util->new_translator( [q{e}], [] ) died" );
 
-$did = t_LKT_Util->serialize( t_LKT_Util->new_translator( [], [q{e}] ) );
-$should = 'undef, ';
-is( $did, $should, "t_LKT_Util->new_translator( [], [q{e}] ) returns '$did'" );
+eval { t_LKT_Util->new_translator( [], [q{e}] ) };
+ok( $@, "t_LKT_Util->new_translator( [], [q{e}] ) died" );
 
 $trn1 = t_LKT_Util->new_translator( q{e}, [q{e}] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',

@@ -34,13 +34,11 @@ pass( "trn1 = new_translator( [$AS],['Eng'] ) contains '" . $trn1->as_debug_str(
 $trn2 = t_LKT_Util->new_translator( [$BS],['Eng'] );
 pass( "trn2 = new_translator( [$BS],['Eng'] ) contains '" . $trn2->as_debug_str() . q|'| );
 
-$did = t_LKT_Util->serialize( $trn1->translate_message( 'foo' ) );
-$should = 'undef, ';
-is( $did, $should, "trn1->translate_message( 'foo' ) returns '$did'" );
+eval { $trn1->translate_message( 'foo' ) };
+ok( $@, "trn1->translate_message( 'foo' ) died" );
 
-$did = t_LKT_Util->serialize( $trn1->translate_message( 'Locale::KeyedText::Message' ) );
-$should = 'undef, ';
-is( $did, $should, "trn1->translate_message( 'Locale::KeyedText::Message' ) returns '$did'" );
+eval { $trn1->translate_message( 'Locale::KeyedText::Message' ) };
+ok( $@, "trn1->translate_message( 'Locale::KeyedText::Message' ) died" );
 
 $did = $trn1->translate_message( $msg1 );
 $should = 'AE - word {fork} { fork } {spoon} {{fork}}';

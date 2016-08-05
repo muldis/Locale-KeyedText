@@ -13,13 +13,11 @@ t_LKT_Util->message( 'testing new_message() and Message object methods' );
 
 my ($did, $should, $msg1);
 
-$did = t_LKT_Util->serialize( t_LKT_Util->new_message( undef ) );
-$should = 'undef, ';
-is( $did, $should, "t_LKT_Util->new_message( undef ) returns '$did'" );
+eval { t_LKT_Util->new_message( undef ) };
+ok( $@, "t_LKT_Util->new_message( undef ) died" );
 
-$did = t_LKT_Util->serialize( t_LKT_Util->new_message( q{} ) );
-$should = 'undef, ';
-is( $did, $should, "t_LKT_Util->new_message( q{} ) returns '$did'" );
+eval { t_LKT_Util->new_message( q{} ) };
+ok( $@, "t_LKT_Util->new_message( q{} ) died" );
 
 $msg1 = t_LKT_Util->new_message( '0' );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
@@ -49,9 +47,8 @@ $did = $msg1->as_debug_str();
 $should = 'foo: ';
 is( $did, $should, "on init msg1->as_debug_str() returns '$did'" );
 
-$did = t_LKT_Util->serialize( t_LKT_Util->new_message( 'foo', { q{} => 'g' } ) );
-$should = 'undef, ';
-is( $did, $should, "t_LKT_Util->new_message( 'foo', { q{} => 'g' } ) returns '$did'" );
+eval { t_LKT_Util->new_message( 'foo', { q{} => 'g' } ) };
+ok( $@, "t_LKT_Util->new_message( 'foo', { q{} => 'g' } ) died" );
 
 $msg1 = t_LKT_Util->new_message( 'foo', { 'bar' => 'baz' } );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
@@ -71,13 +68,11 @@ $did = t_LKT_Util->serialize( $msg1->get_msg_key() );
 $should = q|'foo', |;
 is( $did, $should, "on init msg1->get_msg_key() returns '$did'" );
 
-$did = t_LKT_Util->serialize( $msg1->get_msg_var( undef ) );
-$should = 'undef, ';
-is( $did, $should, "on init msg1->get_msg_var( undef ) returns '$did'" );
+eval { $msg1->get_msg_var( undef ) };
+ok( $@, "msg1->get_msg_var( undef ) died" );
 
-$did = t_LKT_Util->serialize( $msg1->get_msg_var( q{} ) );
-$should = 'undef, ';
-is( $did, $should, "on init msg1->get_msg_var( q{} ) returns '$did'" );
+eval { $msg1->get_msg_var( q{} ) };
+ok( $@, "msg1->get_msg_var( q{} ) died" );
 
 $did = t_LKT_Util->serialize( $msg1->get_msg_var( '0' ) );
 $should = q|'1', |;

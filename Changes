@@ -110,6 +110,12 @@
     non-empty strings when the test wasn't specifically about an empty
     string input and a success had been expected.
 
+    * Updated the test suite to account for the following breaking changes
+    introduced in Locale::KeyedText version 1.06_3:  All constructors and
+    methods now throw exceptions on bad input, rather than returning undef.
+    And so, the test suite now tests that a routine call dies to pass a bad
+    input test rather than checking that it returns undef.
+
     * Locale::KeyedText is now licensed under the terms of the GNU Lesser
     General Public License (LGPL) version 3 or later, rather than version
     2.1+ of the same license.  The text of the updated license is now in
