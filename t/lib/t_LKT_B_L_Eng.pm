@@ -16,4 +16,4 @@ sub get_text_by_key {
     return $text_strings->{$msg_key};
 }
 
-1; # Magic true value required at end of a reusable file's code.
+1;

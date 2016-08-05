@@ -79,6 +79,8 @@
     TODO} and tweak the INSTALL file.  Modernize the content of the README
     file on Locale::KeyedText version control or other resources are.
 
+    * Remove superfluous generic code comments.
+
     * Incremented all copyright year range-ends to 2016 (from 2006).
 
 2006-05-01

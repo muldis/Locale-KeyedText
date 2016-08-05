@@ -33,4 +33,4 @@ can_ok( 't_LKT_B_L_Fre', 'get_text_by_key' );
 
 done_testing();
 
-1; # Magic true value required at end of a reusable file's code.
+1;

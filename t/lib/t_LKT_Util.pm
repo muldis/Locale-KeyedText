@@ -39,4 +39,4 @@ sub serialize {
 
 ######################################################################
 
-1; # Magic true value required at end of a reusable file's code.
+1;

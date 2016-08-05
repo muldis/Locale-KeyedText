@@ -137,4 +137,4 @@ is( $did, $should, "on init trn1->as_string() returns '$did'" );
 
 done_testing();
 
-1; # Magic true value required at end of a reusable file's code.
+1;

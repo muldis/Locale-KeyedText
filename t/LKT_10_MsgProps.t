@@ -103,4 +103,4 @@ is( $did, $should, "on init msg1->get_message_variables() returns '$did'" );
 
 done_testing();
 
-1; # Magic true value required at end of a reusable file's code.
+1;
