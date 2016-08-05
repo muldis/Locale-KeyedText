@@ -285,6 +285,13 @@ sub BUILD {
     my ($set_names_ref, $member_names_ref)
         = @{$args}{'set_names', 'member_names'};
 
+    if (ref $set_names_ref ne 'ARRAY') {
+        $set_names_ref = [$set_names_ref];
+    }
+    if (ref $member_names_ref ne 'ARRAY') {
+        $member_names_ref = [$member_names_ref];
+    }
+
     $self->_assert_arg_ary( 'new', ':@set_names!', $set_names_ref );
     $self->_assert_arg_ary( 'new', ':@member_names!', $member_names_ref );
 

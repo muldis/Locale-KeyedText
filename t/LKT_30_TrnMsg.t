@@ -144,9 +144,9 @@ $did = t_LKT_Util->serialize( $trn11->translate_message( $msg3 ) );
 $should = q|'sharp zot', |;
 is( $did, $should, "trn11->translate_message( msg3 ) returns '$did'" );
 
-package t_LKT_C_L_Eng;
-
 done_testing();
+
+package t_LKT_C_L_Eng;
 
 sub get_text_by_key {
     my (undef, $msg_key) = @_;

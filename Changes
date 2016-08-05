@@ -47,6 +47,11 @@
     * For use by BUILDARGS(), en.pm has gained an additional user text
     message with key 'LKT_ARGS_BAD_PSEUDO_NAMED'.
 
+    * Reverted a stricture added to the Translator constructor submethod by
+    release 1.06_3; now, once again, if a given argument is not an array
+    ref, the argument will be treated as if it were an array ref having a
+    single element which is that given argument.
+
     * Added new direct external dependency on the Perl core module
     "overload" in order that as_debug_string() automatically be used when a
     Message or Translator object is used in a string context; previously
