@@ -53,6 +53,12 @@
     those methods had a STRINGIFY trait implemented by Class::Std.
     We explicitly require the version 1.01 that is bundled with Perl 5.8.1.
 
+    * Add new Message|Template methods as_debug_str() which are like
+    as_debug_string() but returns a terser representation that is not split
+    over multiple lines and adds fewer labels.  The output of the new
+    methods should match that of the as_string() methods last seen in
+    release 1.060002, unlike the as_debug_string() methods added in 1.06_4.
+
     * Added "no warnings 'deprecated'" line to template_module_is_loaded()
     as a stop-gap measure until we replace the current test for a module
     being loaded with one that modern Perls find acceptable.
@@ -78,6 +84,10 @@
     wrappers pass all inputs to said constructor submethods as named
     arguments, the newly only acceptable means, rather than as positional
     ones which they continue to take themselves.
+
+    * Updated the test suite to account for the following breaking changes
+    introduced in Locale::KeyedText version 1.06_3: The as_string() methods
+    last seen in release 1.060002 are now named as_debug_str() in 2.0.0.
 
     * Locale::KeyedText is now licensed under the terms of the GNU Lesser
     General Public License (LGPL) version 3 or later, rather than version

@@ -32,93 +32,93 @@ is( $did, $should, "t_LKT_Util->new_translator( [], [q{}] ) returns '$did'" );
 $trn1 = t_LKT_Util->new_translator( q{}, [q{}] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( q{}, [q{}] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: ; MEMBERS: ';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( [q{}], q{} );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( [q{}], q{} ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: ; MEMBERS: ';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( '0', ['0'] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( '0', ['0'] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: 0; MEMBERS: 0';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( ['0'], '0' );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( ['0'], '0' ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: 0; MEMBERS: 0';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( '0', [q{}] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( '0', [q{}] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: 0; MEMBERS: ';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( 'zZ9', [q{}] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( 'zZ9', [q{}] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: zZ9; MEMBERS: ';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( ['zZ9'], [q{}] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( ['zZ9'], [q{}] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: zZ9; MEMBERS: ';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( ['zZ9','aaa'], [q{}] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( ['zZ9','aaa'], [q{}] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: zZ9, aaa; MEMBERS: ';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( [q{}], '0' );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( [q{}], '0' ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: ; MEMBERS: 0';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( [q{}], 'zZ9' );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( [q{}], 'zZ9' ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: ; MEMBERS: zZ9';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( [q{}], ['zZ9'] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( [q{}], ['zZ9'] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: ; MEMBERS: zZ9';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( [q{}], ['zZ9','aaa'] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( [q{}], ['zZ9','aaa'] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: ; MEMBERS: zZ9, aaa';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( ['goo','har'], ['wer','thr'] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( ['goo','har'], ['wer','thr'] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: goo, har; MEMBERS: wer, thr';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 $did = t_LKT_Util->serialize( $trn1->get_template_set_names() );
 $should = q|[ 'goo', 'har', ], |;
@@ -131,9 +131,9 @@ is( $did, $should, "on init trn1->get_template_member_names() returns '$did'" );
 $trn1 = t_LKT_Util->new_translator( ['go::o','::har'], ['w::er','thr::'] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',
     q|trn1 = new_translator( ['go::o','::har'], ['w::er','thr::'] ) ret TRN obj| );
-$did = $trn1->as_string();
+$did = $trn1->as_debug_str();
 $should = 'SETS: go::o, ::har; MEMBERS: w::er, thr::';
-is( $did, $should, "on init trn1->as_string() returns '$did'" );
+is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
 done_testing();
 

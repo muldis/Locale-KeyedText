@@ -159,6 +159,16 @@ use overload (
     fallback => 1,
 );
 
+sub as_debug_str {
+    my ($self) = @_;
+    my $msg_key = $self->_msg_key();
+    my $msg_vars = $self->_msg_vars();
+    return $msg_key . ': ' . join ', ', map {
+            $_ . '='
+            . (defined $msg_vars->{$_} ? $msg_vars->{$_} : $EMPTY_STR)
+        } sort keys %{$msg_vars};
+}
+
 ###########################################################################
 
 sub _die_with_msg {
@@ -325,6 +335,14 @@ use overload (
     '""' => \&as_debug_string,
     fallback => 1,
 );
+
+sub as_debug_str {
+    my ($self) = @_;
+    my $set_names = $self->_set_names();
+    my $member_names = $self->_member_names();
+    return 'SETS: ' . (join ', ', @{$set_names}) . '; '
+         . 'MEMBERS: ' . (join ', ', @{$member_names});
+}
 
 ###########################################################################
 
@@ -871,6 +889,11 @@ good at a glance); no attribute values are escaped and you shouldn't try to
 extract them.  This method is also defined as the implicit handler when
 coercing this object to a string.
 
+=item C<as_debug_str()>
+
+This method is like C<as_debug_string()> but returns a terser
+representation that is not split over multiple lines and adds fewer labels.
+
 =back
 
 =head2 The Template Modules
@@ -1044,6 +1067,11 @@ for debugging purposes (such as to test that the object's contents look
 good at a glance); no attribute values are escaped and you shouldn't try to
 extract them.  This method is also defined as the implicit handler when
 coercing this object to a string.
+
+=item C<as_debug_str()>
+
+This method is like C<as_debug_string()> but returns a terser
+representation that is not split over multiple lines and adds fewer labels.
 
 =item C<get_set_member_combinations()>
 
