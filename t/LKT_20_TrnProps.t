@@ -120,13 +120,13 @@ $did = $trn1->as_debug_str();
 $should = 'SETS: goo, har; MEMBERS: wer, thr';
 is( $did, $should, "on init trn1->as_debug_str() returns '$did'" );
 
-$did = t_LKT_Util->serialize( $trn1->get_template_set_names() );
+$did = t_LKT_Util->serialize( $trn1->get_set_names() );
 $should = q|[ 'goo', 'har', ], |;
-is( $did, $should, "on init trn1->get_template_set_names() returns '$did'" );
+is( $did, $should, "on init trn1->get_set_names() returns '$did'" );
 
-$did = t_LKT_Util->serialize( $trn1->get_template_member_names() );
+$did = t_LKT_Util->serialize( $trn1->get_member_names() );
 $should = q|[ 'wer', 'thr', ], |;
-is( $did, $should, "on init trn1->get_template_member_names() returns '$did'" );
+is( $did, $should, "on init trn1->get_member_names() returns '$did'" );
 
 $trn1 = t_LKT_Util->new_translator( ['go::o','::har'], ['w::er','thr::'] );
 isa_ok( $trn1, 'Locale::KeyedText::Translator',

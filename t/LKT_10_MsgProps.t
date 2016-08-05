@@ -73,33 +73,33 @@ $did = $msg1->as_debug_str();
 $should = 'foo: 0=1, bar=baz, c=-, y=0, z=';
 is( $did, $should, "on init msg1->as_debug_str() returns '$did'" );
 
-$did = t_LKT_Util->serialize( $msg1->get_message_key() );
+$did = t_LKT_Util->serialize( $msg1->get_msg_key() );
 $should = q|'foo', |;
-is( $did, $should, "on init msg1->get_message_key() returns '$did'" );
+is( $did, $should, "on init msg1->get_msg_key() returns '$did'" );
 
-$did = t_LKT_Util->serialize( $msg1->get_message_variable( undef ) );
+$did = t_LKT_Util->serialize( $msg1->get_msg_var( undef ) );
 $should = 'undef, ';
-is( $did, $should, "on init msg1->get_message_variable( undef ) returns '$did'" );
+is( $did, $should, "on init msg1->get_msg_var( undef ) returns '$did'" );
 
-$did = t_LKT_Util->serialize( $msg1->get_message_variable( q{} ) );
+$did = t_LKT_Util->serialize( $msg1->get_msg_var( q{} ) );
 $should = 'undef, ';
-is( $did, $should, "on init msg1->get_message_variable( q{} ) returns '$did'" );
+is( $did, $should, "on init msg1->get_msg_var( q{} ) returns '$did'" );
 
-$did = t_LKT_Util->serialize( $msg1->get_message_variable( '0' ) );
+$did = t_LKT_Util->serialize( $msg1->get_msg_var( '0' ) );
 $should = q|'1', |;
-is( $did, $should, "on init msg1->get_message_variable( '0' ) returns '$did'" );
+is( $did, $should, "on init msg1->get_msg_var( '0' ) returns '$did'" );
 
-$did = t_LKT_Util->serialize( $msg1->get_message_variable( 'zzz' ) );
+$did = t_LKT_Util->serialize( $msg1->get_msg_var( 'zzz' ) );
 $should = 'undef, ';
-is( $did, $should, "on init msg1->get_message_variable( 'zzz' ) returns '$did'" );
+is( $did, $should, "on init msg1->get_msg_var( 'zzz' ) returns '$did'" );
 
-$did = t_LKT_Util->serialize( $msg1->get_message_variable( 'bar' ) );
+$did = t_LKT_Util->serialize( $msg1->get_msg_var( 'bar' ) );
 $should = q|'baz', |;
-is( $did, $should, "on init msg1->get_message_variable( 'bar' ) returns '$did'" );
+is( $did, $should, "on init msg1->get_msg_var( 'bar' ) returns '$did'" );
 
-$did = t_LKT_Util->serialize( $msg1->get_message_variables() );
+$did = t_LKT_Util->serialize( $msg1->get_msg_vars() );
 $should = q|{ '0' => '1', 'bar' => 'baz', 'c' => '-', 'y' => '0', 'z' => q{}, }, |;
-is( $did, $should, "on init msg1->get_message_variables() returns '$did'" );
+is( $did, $should, "on init msg1->get_msg_vars() returns '$did'" );
 
 done_testing();
 
