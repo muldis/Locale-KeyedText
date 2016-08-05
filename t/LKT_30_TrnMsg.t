@@ -41,15 +41,15 @@ eval { $trn1->translate_message( 'Locale::KeyedText::Message' ) };
 ok( $@, "trn1->translate_message( 'Locale::KeyedText::Message' ) died" );
 
 $did = $trn1->translate_message( $msg1 );
-$should = 'AE - word {fork} { fork } {spoon} {{fork}}';
+$should = 'AE - word <fork> < fork > <spoon> <<fork>>';
 is( $did, $should, "trn1->translate_message( msg1 ) returns '$did'" );
 
 $did = $trn1->translate_message( $msg2 );
-$should = 'AE - word 0 { fork } lift {0}';
+$should = 'AE - word 0 < fork > lift <0>';
 is( $did, $should, "trn1->translate_message( msg2 ) returns '$did'" );
 
 $did = $trn1->translate_message( $msg3 );
-$should = 'AE - word  { fork }  {}';
+$should = 'AE - word  < fork >  <>';
 is( $did, $should, "trn1->translate_message( msg3 ) returns '$did'" );
 
 $did = t_LKT_Util->serialize( $trn2->translate_message( $msg2 ) );
@@ -80,7 +80,7 @@ $trn4 = t_LKT_Util->new_translator( [$BS,$AS],['Fre','Eng'] );
 pass( "trn4 = new_translator( [$AS],['Eng'] ) contains '" . $trn4->as_debug_str() . q|'| );
 
 $did = t_LKT_Util->serialize( $trn1->translate_message( $msg1 ) );
-$should = q|'AE - word poke { fork } lift {poke}', |;
+$should = q|'AE - word poke < fork > lift <poke>', |;
 is( $did, $should, "trn1->translate_message( msg1 ) returns '$did'" );
 
 $did = t_LKT_Util->serialize( $trn1->translate_message( $msg2 ) );
@@ -92,7 +92,7 @@ $should = q|'BE - eat sharp', |;
 is( $did, $should, "trn1->translate_message( msg3 ) returns '$did'" );
 
 $did = t_LKT_Util->serialize( $trn2->translate_message( $msg1 ) );
-$should = q|'AF - word poke { fork } lift {poke}', |;
+$should = q|'AF - word poke < fork > lift <poke>', |;
 is( $did, $should, "trn2->translate_message( msg1 ) returns '$did'" );
 
 $did = t_LKT_Util->serialize( $trn2->translate_message( $msg2 ) );
@@ -104,7 +104,7 @@ $should = q|'BF - eat sharp', |;
 is( $did, $should, "trn2->translate_message( msg3 ) returns '$did'" );
 
 $did = t_LKT_Util->serialize( $trn3->translate_message( $msg1 ) );
-$should = q|'AE - word poke { fork } lift {poke}', |;
+$should = q|'AE - word poke < fork > lift <poke>', |;
 is( $did, $should, "trn3->translate_message( msg1 ) returns '$did'" );
 
 $did = t_LKT_Util->serialize( $trn3->translate_message( $msg2 ) );
@@ -116,7 +116,7 @@ $should = q|'BE - eat sharp', |;
 is( $did, $should, "trn3->translate_message( msg3 ) returns '$did'" );
 
 $did = t_LKT_Util->serialize( $trn4->translate_message( $msg1 ) );
-$should = q|'AF - word poke { fork } lift {poke}', |;
+$should = q|'AF - word poke < fork > lift <poke>', |;
 is( $did, $should, "trn4->translate_message( msg1 ) returns '$did'" );
 
 $did = t_LKT_Util->serialize( $trn4->translate_message( $msg2 ) );
@@ -149,9 +149,9 @@ package t_LKT_C_L_Eng;
 sub get_text_by_key {
     my (undef, $msg_key) = @_;
     my $text_strings = {
-        'one' => q[{fork} shore {spoon}],
+        'one' => q[<fork> shore <spoon>],
         'two' => q[sky fly high],
-        'three' => q[{knife} zot],
+        'three' => q[<knife> zot],
     };
     return $text_strings->{$msg_key};
 }

@@ -8,7 +8,7 @@ package t_LKT_B_L_Eng;
 my $xy = 'BE';
 my $text_strings = {
     'two' => $xy . q[ - sky pie rye],
-    'three' => $xy . q[ - eat {knife}],
+    'three' => $xy . q[ - eat <knife>],
 };
 
 sub get_text_by_key {

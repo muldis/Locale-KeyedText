@@ -7,7 +7,7 @@ package t_LKT_A_L_Eng;
 
 my $xy = 'AE';
 my $text_strings = {
-    'one' => $xy . q[ - word {fork} { fork } {spoon} {{fork}}],
+    'one' => $xy . q[ - word <fork> < fork > <spoon> <<fork>>],
     'two' => $xy . q[ - sky pie rye],
 };
 
