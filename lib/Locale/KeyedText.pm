@@ -84,7 +84,7 @@ sub BUILDARGS {
     }
     else {
         # Constructor was called with odd number positional arguments.
-        $self->_die_with_msg( 'LKT_ARGS_BAD_PSEUDO_NAMED' );
+        $class->_die_with_msg( 'LKT_ARGS_BAD_PSEUDO_NAMED' );
     }
 }
 
@@ -257,7 +257,7 @@ sub BUILDARGS {
     }
     else {
         # Constructor was called with odd number positional arguments.
-        $self->_die_with_msg( 'LKT_ARGS_BAD_PSEUDO_NAMED' );
+        $class->_die_with_msg( 'LKT_ARGS_BAD_PSEUDO_NAMED' );
     }
 }
 

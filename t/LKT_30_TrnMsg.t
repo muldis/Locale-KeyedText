@@ -154,7 +154,7 @@ sub get_text_by_key {
         'one' => q[{fork} shore {spoon}],
         'two' => q[sky fly high],
         'three' => q[{knife} zot],
-    );
+    };
     return $text_strings->{$msg_key};
 }
 
