@@ -13,60 +13,60 @@ t_LKT_Util->message( 'testing new_message() and Message object methods' );
 
 my ($did, $should, $msg1);
 
-$did = t_LKT_Util->serialize( Locale::KeyedText->new_message( undef ) );
+$did = t_LKT_Util->serialize( t_LKT_Util->new_message( undef ) );
 $should = 'undef, ';
-is( $did, $should, "Locale::KeyedText->new_message( undef ) returns '$did'" );
+is( $did, $should, "t_LKT_Util->new_message( undef ) returns '$did'" );
 
-$msg1 = Locale::KeyedText->new_message( q{} );
+$msg1 = t_LKT_Util->new_message( q{} );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
     q|msg1 = new_message( q{} ) ret MSG obj| );
 $did = $msg1->as_string();
 $should = ': ';
 is( $did, $should, "on init msg1->as_string() returns '$did'" );
 
-$msg1 = Locale::KeyedText->new_message( '0' );
+$msg1 = t_LKT_Util->new_message( '0' );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
     q|msg1 = new_message( '0' ) ret MSG obj| );
 $did = $msg1->as_string();
 $should = '0: ';
 is( $did, $should, "on init msg1->as_string() returns '$did'" );
 
-$msg1 = Locale::KeyedText->new_message( 'zZ9' );
+$msg1 = t_LKT_Util->new_message( 'zZ9' );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
     q|msg1 = new_message( 'zZ9' ) ret MSG obj| );
 $did = $msg1->as_string();
 $should = 'zZ9: ';
 is( $did, $should, "on init msg1->as_string() returns '$did'" );
 
-$msg1 = Locale::KeyedText->new_message( 'foo', undef );
+$msg1 = t_LKT_Util->new_message( 'foo', undef );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
     q|msg1 = new_message( 'foo', undef ) ret MSG obj| );
 $did = $msg1->as_string();
 $should = 'foo: ';
 is( $did, $should, "on init msg1->as_string() returns '$did'" );
 
-$msg1 = Locale::KeyedText->new_message( 'foo', {} );
+$msg1 = t_LKT_Util->new_message( 'foo', {} );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
     q|msg1 = new_message( 'foo', {} ) ret MSG obj| );
 $did = $msg1->as_string();
 $should = 'foo: ';
 is( $did, $should, "on init msg1->as_string() returns '$did'" );
 
-$msg1 = Locale::KeyedText->new_message( 'foo', { q{} => 'g' } );
+$msg1 = t_LKT_Util->new_message( 'foo', { q{} => 'g' } );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
     q|msg1 = new_message( 'foo', { q{} => 'g' } ) ret MSG obj| );
 $did = $msg1->as_string();
 $should = 'foo: =g';
 is( $did, $should, "on init msg1->as_string() returns '$did'" );
 
-$msg1 = Locale::KeyedText->new_message( 'foo', { 'bar' => 'baz' } );
+$msg1 = t_LKT_Util->new_message( 'foo', { 'bar' => 'baz' } );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
     q|msg1 = new_message( 'foo', { 'bar' => 'baz' } ) ret MSG obj| );
 $did = $msg1->as_string();
 $should = 'foo: bar=baz';
 is( $did, $should, "on init msg1->as_string() returns '$did'" );
 
-$msg1 = Locale::KeyedText->new_message( 'foo', { 'bar'=>'baz','c'=>'-','0'=>'1','z'=>q{},'y'=>'0' } );
+$msg1 = t_LKT_Util->new_message( 'foo', { 'bar'=>'baz','c'=>'-','0'=>'1','z'=>q{},'y'=>'0' } );
 isa_ok( $msg1, 'Locale::KeyedText::Message',
     q|msg1 = new_message( 'foo', { 'bar'=>'baz','c'=>'d','0'=>'1','z'=>q{},'y'=>'0' } ) ret MSG obj| );
 $did = $msg1->as_string();

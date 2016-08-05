@@ -61,11 +61,23 @@
 
     * The second main purpose of this release is bringing back the thorough
     (such as it was) test suite that came with Locale::KeyedText up through
-    release 1.060002 and was entirely purged with release 1.06_3.
+    release 1.060002 and was entirely purged with release 1.06_3.  Any
+    changes made to the test suite for the current release relative to how
+    it was in release 1.060002 are detailed in separate bullet points next.
 
     * Increased the direct external dependency on Test::More to version
     0.92, which is the version bundled with Perl 5.10.1; updated the test
     suite to use done_testing(), that v0.88+ has, rather than plan().
+
+    * Updated the test suite to account for the following breaking changes
+    introduced in Locale::KeyedText version 1.06_3:  Add new test suite
+    wrapper functions t_LKT_Util->new_[message|translator](), that wrap
+    Locale::KeyedText::[Message|Translator]->new(), and have the rest of
+    the test suite invoke those wrappers rather than the now nonexistant
+    Locale::KeyedText->new_[message|translator]() wrappers.  Also the new
+    wrappers pass all inputs to said constructor submethods as named
+    arguments, the newly only acceptable means, rather than as positional
+    ones which they continue to take themselves.
 
     * Locale::KeyedText is now licensed under the terms of the GNU Lesser
     General Public License (LGPL) version 3 or later, rather than version
