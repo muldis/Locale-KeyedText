@@ -83,6 +83,44 @@
 
     * Incremented all copyright year range-ends to 2016 (from 2006).
 
+    * Fleshed out this distribution's "Changes" file to restore all of the
+    detail entries that earlier releases contained and subsequent releases
+    had purged.  And so as of the current release 2.0.0 the "Changes" file
+    should have a complete accounting of the project history, the only
+    thing being more thorough than that being the project version control.
+
+    * This is the Locale-KeyedText-2.0.0 file manifest:
+
+        Changes
+        examples/inverter1/MyApp.pl
+        examples/inverter1/MyApp/L/Eng.pm
+        examples/inverter1/MyApp/L/Fre.pm
+        examples/inverter1/MyApp/L/Homer.pm
+        examples/inverter1/MyLib.pm
+        examples/inverter1/MyLib/L/Eng.pm
+        examples/inverter1/MyLib/L/Fre.pm
+        examples/inverter2/MyApp.pl
+        examples/inverter2/MyApp/L/Homer.pm
+        examples/inverter2/MyLib.pm
+        INSTALL
+        lib/Locale/KeyedText.pm
+        lib/Locale/KeyedText/L/en.pm
+        LICENSE/GPL
+        LICENSE/LGPL
+        Makefile.PL
+        MANIFEST
+        README
+        t/lib/t_LKT_A_L_Eng.pm
+        t/lib/t_LKT_A_L_Fre.pm
+        t/lib/t_LKT_B_L_Eng.pm
+        t/lib/t_LKT_B_L_Fre.pm
+        t/lib/t_LKT_Util.pm
+        t/LKT_00_Compile.t
+        t/LKT_10_MsgProps.t
+        t/LKT_20_TrnProps.t
+        t/LKT_30_TrnMsg.t
+        TODO
+
 2006-05-01
 
     * Locale-KeyedText Release 1.73.0/1.073000 (SVN r1261).
@@ -460,34 +498,387 @@
 
 2005-09-08
 
-    * Locale-KeyedText Release 1.6.0/1.006000 (SVN r787), containing
-    Locale::KeyedText 1.6.0, was released on CPAN.  This is the first
-    release of this distribution and its modules for which they had 3-part
-    version numbers, rather than floating point version numbers.
+    * Locale-KeyedText Release 1.6.0/1.006000 (SVN r787).
+
+    * New code file versions are: KeyedText.pm v1.6.0.
+
+    * From now on, if the minimum Perl version that this distribution
+    depends on (currently 5.008001) comes bundled with a satisfactory
+    version of a module that we have a dependency on, then we will no
+    longer specify any version number when referring to said module.  An
+    example of such is Test::More.
+
+    * Added a new main title to this Changes file that matches the ReadMe
+    file.
+
+    * Rewrote the documentation section KEEPING UP TO DATE in the ReadMe
+    file.
+
+    * Minor KeyedText.pm documentation update so that any Perl subs which
+    were referred to as "function/method" etc are now simply "function".
+
+    * Updated the DESCRIPTION paragraph of KeyedText.pm that refers to how
+    easy to install the module is; it now says the module has few external
+    dependencies, rather than specifying zero.
+
+    * Converted every distribution file to use indentations composed of
+    space characters (4 spaces per indentation level) rather than tab
+    characters.
+
+    * Updated all files containing POD (*.pm, *.pod) to re-order some POD
+    sections.  Now all of the POD is after all of the code, rather than
+    that being mostly true but for a bit of POD before most of the code. 
+    The 'NAME' POD has been moved to just above the 'SYNOPSIS'. The
+    'DEPENDENCIES' has been moved to just above the 'SEE ALSO'.  Any 'BUGS'
+    and 'CAVEATS' have been moved to just below the 'SEE ALSO'.  The
+    'COPYRIGHT AND LICENSE' has been moved to the very end of the file,
+    except that any 'CREDITS' have been moved below that.  Also updated the
+    ReadMe file to move the 'CREDITS' below the 'COPYRIGHT AND LICENSE'. 
+    There were zero changes to the content of any POD sections, and no new
+    POD sections were added or existing ones removed, except for those
+    explicitly listed below.
+
+    * Updated all files containing POD:  Deleted the 'SYNTAX' section,
+    whose value was dubious, from any files that had one.  Renamed
+    'COPYRIGHT AND LICENSE' to 'LICENCE AND COPYRIGHT', and added a new
+    'AUTHOR' section just above it.  Renamed 'CREDITS' to
+    'ACKNOWLEDGEMENTS' in any files that had one.  COPYRIGHT and CREDITS
+    were likewise renamed in the ReadMe file.
+
+    * Updated the POD in all *.pm files:  Added a new 'VERSION' section,
+    which appears just below the 'NAME'.  Added a new 'INCOMPATIBILITIES'
+    section, which appears just below 'DEPENDENCIES'.  Renamed and/or
+    merged any 'BUGS' and 'CAVEATS' sections into a single 'BUGS AND
+    LIMITATIONS' section, and added that section to any files lacking its
+    predecessors.  Rewrote the 'DEPENDENCIES' into a new
+    paragraph-resembling format that specifies where each dependency is,
+    such as bundled with perl, or bundled with the current distribution, or
+    available on CPAN; also rewrote the ReadMe file version.
+
+    * Updated all *.pm files to add a new external dependency on the
+    'version' module, which has core-like functionality but isn't yet
+    bundled with Perl; all 'our $VERSION' declarations were changed to
+    qv-wrapped three-part format from floating point format; likewise,
+    updated the *_00_Compile.t file to use 'version', and also changed the
+    tests for expected module versions to be performed by is() rather than
+    cmp_ok().
+
+    * This is the first release of this distribution and its modules for
+    which they had 3-part version numbers, rather than floating point
+    version numbers.
 
     * These were the current versions cited by the public announcement for
     Rosetta/SQL-Routine developer release #3.
 
 2005-06-14
 
-    * Locale-KeyedText Release 1.05/1.050000, containing Locale::KeyedText
-    1.05, was released on CPAN.  This is the last release of this
-    distribution and its modules for which they had floating point version
-    numbers, rather than 3-part version numbers.
+    * Locale-KeyedText Release 1.05/1.050000.
+
+    * New code file versions are: KeyedText.pm v1.05.
+
+    * This release contains a large batch of changes that were done
+    simultaneously in the Perl 5 and Perl 6 versions of Locale::KeyedText;
+    the Perl 6 versions can be seen on CPAN in the upcoming
+    Perl6-Pugs-6.2.8 distribution beneath its /ext/Locale-KeyedText
+    directory.
+
+    * Updated all files in this distribution that display the physical
+    address of the Free Software Foundation, Inc. so it uses their current
+    address of "51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA"
+    rather than their previous address of "59 Temple Place, Suite 330,
+    Boston, MA 02111-1307 USA"; this affects every COPYRIGHT AND LICENSE
+    statement in the core files and the 'ReadMe' file, plus any 'GPL' or
+    'LGPL' license file.
+
+    * Updated the INSTALL file so that it is more generic, and all of my
+    distributions now use an identical copy of it.
+
+    * Updated the main heading in the ReadMe file to state the
+    distribution's name rather than a terse description of it.
+
+    * Updated KeyedText.pm to remove superfluous input restrictions that
+    were present for all Message and Translator properties.  Now each
+    element of said properties can be any defined value, including the
+    empty string, and there are no invalid characters.  Previously you
+    could mainly just use alphanumeric characters for them.  Updated
+    methods Message.new() and Translator.new() to implement the change, and
+    also updated the POD sections that overview the Message and Translator
+    classes concerning this.
+
+    * Added a restriction to the Translator class such that each of its
+    array properties must have at least 1 element (which can be the empty
+    string); previously, zero elements were allowed.  Corresponding POD
+    update in the Translator class overview.
+
+    * Removed the translate_message() code comment about an assumption of
+    properties being previously cleaned.  Added an item in the TODO file
+    concerning a future policy change being required to handle literal '{'
+    and '}' in Message Variable Names.
+
+    * Removed the BUGS documentation in KeyedText.pm; it simply referred to
+    the quality of the French user-text examples in the POD.
+
+    * A few other minor POD bug fixes or updates.
+
+    * In t_LKT_Util.pm, reorganized the serialize() function's dispatch order.
+
+    * Large updates to the 2 LKT_[10_Msg|20_Trn]Props.t files where about
+    half of the tests were added and/or removed, and some otherwise edited.
+    In summary, there are a lot fewer tests that dealt with expected
+    failure cases and some extra that deal with expected success cases.
+    LKT_10_MsgProps.t now has 5 fewer tests, LKT_20_TrnProps.t has the same
+    number, and LKT_30_TrnMsg.t now has 1 fewer.
+
+    * Zero changes were made to the 4 t_LKT_[A|B]_L_[Eng|Fre].pm files.
+
+    * This is the last release of this distribution and its modules for
+    which they had floating point version numbers, rather than 3-part
+    version numbers.
+
+2005-05-13
+
+    * Locale-KeyedText Release 1.04.
+
+    * New code file versions are: KeyedText.pm v1.04.
+
+    * Updated every instance of the COPYRIGHT AND LICENSE documentation in
+    this distribution to correct the declared date range in which the core
+    Locale::KeyedText files were created.  The new dates are 2003 thru 2005,
+    which is when I actually committed documentation describing or code
+    implementing what became the Locale::KeyedText core.  The old dates were
+    1999 thru 2005, which goes back to the time that I started conceiving a
+    larger project which the aforementioned module started out being related
+    to; however, those earlier years did not contain any work on what
+    specifically became the aforementioned module, so they are now excluded.
+
+    * Updated every instance of the COPYRIGHT AND LICENSE documentation in
+    this distribution so that you may now choose between licensing it under
+    the LGPL version 2.1 or any later LGPL version, rather than only under
+    version 2.1.
+
+    * Renamed the "LICENSE" file to "LGPL", and correspondingly updated all
+    references to it in this distribution, most of them being in COPYRIGHT
+    AND LICENSE statements.  This change was made to reduce user confusion
+    in situations where files from this distribution may be aggregated with
+    other files that have different licenses; the old name was too generic.
+
+    * This release saw a large reorganization of the test suite.  The file
+    t/Locale_KeyedText.t was split-up into these 5 parts (numbers in parens
+    are the portion of the original 102 numbered tests that each part got):
+    t/lib/t_LKT_Util.pm (zero), t/LKT_00_Compile.t (4), t/LKT_10_MsgProps.t
+    (29), t/LKT_20_TrnProps.t (34), t/LKT_30_TrnMsg.t (35).  The test
+    utility module t_LKT_Util.pm contains the message() and serialize()
+    functions used by most of the other test scripts; the message()
+    function also received a minor update such that its output is prefixed
+    with '#' rather than '--', like Test::More does for comments.  Also
+    renamed the 4 t_Locale_KeyedText_*.pm files to t_LKT_*.pm.
+
+    * Updated the new test script t/LKT_00_Compile.t to add 9 brand new
+    numbered tests for a total of 13; 6 of these 13 use Test::More's
+    use_ok() function to cleanly test that the 1 core module and 5 test
+    modules will load without errors; 1 of these tests, with cmp_ok(), that
+    the 1 core module is of the correct version; 6 of these test, with
+    can_ok(), that the 5 test modules declare the required functions.  This
+    new script runs prior to all of the others.  Before this change, the
+    original test script would simply die without any ok/not ok.
+
+    * Renamed this file to 'Changes' from 'ChangeLog'; the new name is more
+    descriptive to its free-form structure, and more consistent with CPAN
+    (which uses both names but 'Changes' seems to be more common these
+    days).  Also truncated this Changes file to remove all detail entries
+    for releases v1.00 thru v1.03; in their place was added a change
+    summary for releases v0.01 thru v1.03 that mainly just said what the
+    names and versions of all the predecessor distributions and modules are.
 
 2005-04-03
 
-    * Locale-KeyedText Release 1.03, containing Locale::KeyedText 1.03, was
-    released on CPAN.
+    * Locale-KeyedText Release 1.03.
+
+    * New code file versions are: KeyedText.pm v1.03.
+
+    * Added new external dependency on Test::More v0.47 (bundled with Perl
+    5.8.x); this distribution's test suite has been re-factored to use it
+    rather than rolling its own equivalent functionality, which is more in
+    line with CPAN best practices.  The new dependency does not extend to
+    this distribution's core modules (everything in /lib), which do not use it.
+
+    * Updated every 'use' statement in this distribution so that the module
+    version is formatted as a number rather than a string; this fixes a
+    problem where Perl was not asserting that the installed modules were
+    new enough.
+
+    * In order to help ease the transition to Perl 6, updated every in-code
+    function and method which made direct references to @_ elements so that
+    they explicitly declare argument variables instead with "my (...) =
+    @_;"; moreover, any functions that don't use their invocant use "undef"
+    for it in the above list.  These 6 KeyedText.pm code routines were
+    affected: new_message(), new_translator(),
+    Message.get_message_[key|variables](),
+    Translator.get_template_[set|member]_names().  Also, every in-code (test
+    suite) or in-POD (KeyedText.pm) Template class declaration was affected.
+
+    * Multiple KeyedText.pm POD updates: 1. Wrote a brand new and much
+    shorter SYNOPSIS, which should be much easier to learn quickly than the
+    old one; 2. Renamed the old SYNOPSIS to EXAMPLE PROGRAM WITH ENTIRELY
+    SEPARATED TEMPLATE MODULE FILES and moved it further down; 3. Wrote a
+    brand new and much more accessible DESCRIPTION that should be much more
+    suited to explaining the benefits and purpose of the module; 4. Renamed
+    the old DESCRIPTION to HOW IT WORKS, moved it further down, and edited
+    it a bit more; 5. Renamed AN ALTERNATIVE TO SEPARATED TEMPLATE FILES to
+    ALTERNATE EXAMPLE PROGRAM WITH MOSTLY INTEGRATED TEMPLATE MODULES; 6.
+    Demoted all the =head2 in the 2 EXAMPLE sections to ordinary one-line
+    paragraphs and reduced whitespace.
+
+    * Added a dated credit notice to Stevan Little in the ReadMe and
+    KeyedText.pm; also copied an older credit notice to Jason Martin from
+    the ReadMe to KeyedText.pm, adding dates; now credits are in both
+    files.  In KeyedText.pm, these live in a new POD section called CREDITS.
+
+    * Stripped this ChangeLog of release entries that were specific to its
+    separately distributed Perl 6 version (in Perl6-Pugs), dated 2005-03-07
+    thru 2005-03-13; those details will appear in the ChangeLog of a
+    separate distribution of my own that contains just my Perl 6 modules.
+
+    * NOTICE: This release v1.03 is the last one to contain detailed
+    ChangeLog entries for releases v1.00 thru v1.03; release v1.04 will
+    truncate the ChangeLog so it only shows details for v1.04 and later.
 
     * These were the current versions cited by the public announcement for
     SQL-Routine/Rosetta developer release #2.
 
+2005-03-13
+
+    * Locale-KeyedText Release 1.02.
+
+    * New code file versions are: KeyedText.pm v1.02.
+
+    * This release primarily fixes bugs or makes code style improvements in
+    this current Perl 5 version that were simultaneously performed on the
+    brand new Perl 6 version in time for its Pugs v6.0.11 release.
+
+    * Corrected a few spelling mistakes in the KeyedText.pm documentation.
+
+    * Corrected a couple bugs in Locale_KeyedText.t: 1. The last 3 tests
+    contained the wrong text in their output strings, suggesting that the
+    last 4 all did the same thing. 2. Removed the vis() function, which was
+    never used.
+
+    * In order to help ease the transition to Perl 6, updated every in-code
+    (in the test suite) or in-POD (in KeyedText.pm) Template class
+    declaration to make all user text message strings bound in
+    non-interpolating single quotes rather than interpolating double-quotes.
+    The reason is because these text strings frequently use literal braces
+    ({}) and Perl 6 would have incorrectly interpreted those as containing
+    embedded Perl code to execute and interpolate the result value of.
+
+    * Following a suggestion given to me by Larry Wall on p6l, replaced the
+    input checking negative assertions in Message.new() and
+    Translator.new() with positive assertions that do the same thing; for
+    example, rather than testing the input for being either an empty string
+    or containing bad characters, it tests that input consists entirely of
+    one or more good character; the new versions are much more concise and
+    easier to understand.
+
+    * Following a style suggestion given to me by Larry Wall on p6l,
+    updated every occurance of a "return" statement in the distribution to
+    remove the parenthesis around its value list, since it is a an operator
+    rather than a function; this also makes my code more consistent since I
+    never used parens for the likes of "sort" or "keys" or "next" or
+    "last".  Also updated every "return" to not explicitly return undefs
+    (that's what "return" does by default), and also to not return a
+    generic truth value ("1") when any caller would ignore it.
+
+    * Updated any DEPENDENCIES documentation to use sub-headings "[|Non-]
+    Core Modules" rather than "[|Non]standard Modules".
+
+    * Updated the TODO file re supporting plain-text Template files.
+
+2004-12-15
+
+    * Locale-KeyedText Release 1.01.
+
+    * New code file versions are: KeyedText.pm v1.01.
+
+    * No further changes to distribution besides the version numbers.
+
+2004-12-14
+
+    * Locale-KeyedText Release 1.01_2.
+
+    * New code file versions are: KeyedText.pm v1.01_2.
+
+    * Updated the SYNOPSIS and AN ALTERNATIVE TO SEPARATED TEMPLATE FILES
+    documentation in KeyedText.pm to add the character accents to the
+    French language examples.  Those accents should have been there all
+    along, but I didn't use them before v1.01 because ASCII didn't support
+    them.  Also updated the BUGS documentation to remove the comment about
+    missing accents.
+
+    * Fixed a minor AN ALTERNATIVE TO SEPARATED TEMPLATE FILES code bug.
+
+2004-12-13
+
+    * Locale-KeyedText Release 1.01_1.
+
+    * This distribution now requires Perl 5.008001 or higher; it was 5.006.
+
+    * All files in this distribution are now officially UTF-8 encoded,
+    though they continue to have no BOM, and they still have Unix
+    line-breaks.  Any files that contain code now have the "use utf8"
+    pragma.  Any files that contain POD now have "=encoding utf8" as the
+    first POD command paragraph.
+
+    * All distro files that contain code, whether *.[pm|pl|PL|t], now begin
+    with "#!perl" on their first line, and the second line contains "use
+    5.008001; use utf8; use strict; use warnings;"; all other code and POD
+    is below those. Within the *.pm files, the "package ... $VERSION ..."
+    now appears above all of the POD; also, the NAME and DEPENDENCIES POD
+    now have nothing between them.  Within the *.t files, there is no
+    longer any BEGIN/END $loaded test, so the test count has been
+    decremented by one.
+
+    * Updated any SEE ALSO module references to be L<>.
+
+    * New code file versions are: KeyedText.pm v1.01_1.
+
+    * Fixed a minor SYNOPSIS code bug in KeyedText.pm.
+
 2004-09-23
 
-    * Locale-KeyedText Release 1.00, containing Locale::KeyedText 1.00, was
-    released on CPAN.  This is the first release of this module following
-    its official registration on the Perl 5 Module List.
+    * Locale-KeyedText Release 1.00.
+
+    * New code file versions are: KeyedText.pm v1.00.
+
+    * I hereby assert that Locale::KeyedText is complete, tested, and ready
+    to be used in production environments.  No further updates are planned
+    during the short term except in response to user requests.  Any future
+    releases should be fully backwards-compatible with this release.
+
+    * Any other changes to this distribution since v0.07, aside from the
+    version change and the truncation of this ChangeLog file, follow below.
+
+    * In KeyedText.pm, minor updates to the DESCRIPTION and SEE ALSO docs.
+
+    * Updated the TODO file.
+
+    * This is the first release of this module following its official
+    registration on the Perl 5 Module List.
+
+    * This is the Locale-KeyedText-1.00 file manifest:
+
+        ChangeLog
+        INSTALL
+        lib/Locale/KeyedText.pm
+        LICENSE
+        Makefile.PL
+        MANIFEST
+        ReadMe
+        t/lib/t_Locale_KeyedText_A_L_Eng.pm
+        t/lib/t_Locale_KeyedText_A_L_Fre.pm
+        t/lib/t_Locale_KeyedText_B_L_Eng.pm
+        t/lib/t_Locale_KeyedText_B_L_Fre.pm
+        t/Locale_KeyedText.t
+        TODO
 
 2004-09-23
 
@@ -508,26 +899,168 @@
 
 2004-08-31
 
-    * Locale-KeyedText Release 0.07, containing Locale::KeyedText 0.07, was
-    released on CPAN.  This is the last release of this module prior to its
-    official registration on the Perl 5 Module List.
+    * Locale-KeyedText Release 0.07.
+
+    * New code file versions are: KeyedText.pm v0.07.
+
+    * Updated KeyedText.pm to use the modern syntax "our $VERSION = ..."
+    instead of "use vars qw($VERSION); $VERSION = ...".
+
+    * Moved this distribution's t_*.pm files from the /lib directory to a
+    new /t/lib directory, so that they don't pollute the user's install
+    directories, and so the distribution is better organized on the whole.
+    Added a "use lib 't/lib';" to Locale_KeyedText.t in order to make the
+    move work.  No changes to the tests themselves.  Updated the MANIFEST.
+
+    * This is the last release of this module prior to its official
+    registration on the Perl 5 Module List.
 
 2004-08-05
 
-    * Locale-KeyedText Release 0.06, containing Locale::KeyedText 0.06, was
-    released on CPAN.
+    * Locale-KeyedText Release 0.06.
+
+    * This is a small code bug fix release.  No POD or API changes were made.
+
+    * Updated all distribution code that makes use of UNIVERSAL::isa() to
+    test for valid objects so that it no longer incorrectly "passes"
+    literal strings whose string values match the class names of valid
+    objects.  For each test, "UNIVERSAL::isa($obj,'<class-name>')" was
+    replaced with "ref($obj) and UNIVERSAL::isa($obj,'<class-name>')".
+    Before the fixes, code that UNIVERSAL::isa() was supposed to guard
+    would eventually die with the standard Perl error "Can't use string
+    ('<class-name>') as a HASH ref", rather than elegantly dealing with the
+    bad input value.
+
+    * Updated KeyedText.pm (now v0.06) to fix one UNIVERSAL::isa()
+    occurance in Translator.translate_message().  Also added 1 test in
+    Locale_KeyedText.t to confirm that the bug was fixed.
+
+    * Note that KeyedText 0.05 would die on (fail) 1 of the current 103 tests.
 
     * These were the current versions cited by the public announcement for
     Rosetta/SQL-SyntaxModel developer release #1.
 
+2004-07-26
+
+    * Locale-KeyedText Release 0.05.
+
+    * This is a feature addition release; it is completely backwards
+    compatible.
+
+    * Updated KeyedText.pm (now v0.05) to add a new feature to
+    Translator.translate_message() so that it first tests to see if a
+    TEMPLATE class package is already loaded before trying to load it with
+    "require". As a result of this change, Locale::KeyedText should now
+    work for situations where you want to embed Template class package
+    declarations in your standard code files, rather than in separate files
+    of their own.  Also added new POD section AN ALTERNATIVE TO SEPARATED
+    TEMPLATE FILES.  Thanks to Jason Martin (jhmartin@toger.us) for
+    suggesting the new feature.  Also added 4 more tests to
+    Locale_KeyedText.t, for a total of 102.
+
+2004-06-26
+
+    * Locale-KeyedText Release 0.04.
+
+    * This is a small code bug fix release.  No POD or API changes were made.
+
+    * Updated KeyedText.pm (now v0.04) to fix Message.as_string() and
+    Translator.translate_message() so that each outputs interpolated
+    message key values of zero as '0' and not ''.  Also updated 4 tests in
+    Locale_KeyedText.t to confirm that the bugs were fixed.
+
+    * Note that KeyedText 0.03 would fail 2 of the current 98 tests.
+
+2004-03-05
+
+    * Locale-KeyedText Release 0.03.
+
+    * This is a small but incompatible maintenance release.  Or more
+    specifically, it is only incompatible if your use of it involves
+    reading the package names, such as with "UNIVERSAL::isa" (and the tests
+    do); if you don't do that, then it is backwards compatible.
+
+    * Updated lib/Locale/KeyedText.pm (now v0.03) to reorganize and more
+    properly document its component class/package set.
+    Locale::KeyedText::_::Message was renamed to Locale::KeyedText::Message
+    and Locale::KeyedText::_::Translator was renamed to
+    Locale::KeyedText::Translator.  The stateless new_message() and
+    new_translator() functions were each moved into the packages of the
+    objects that they create, and each was renamed to new(), and each now
+    uses its first argument as the package name to bless into as is usual
+    with Perl classes, and unlike the hard-coded bless it had before; two
+    new functions having the old names now exist in their place and simply
+    call the moved functions, so you can still invoke them like you did
+    before.
+
+    * Added new POD documentation section CLASSES IN THIS MODULE to
+    KeyedText.pm which outlines the reality of the multiple package/classes
+    in the single module, and their relation.  It also says that you should
+    never make your own modules with any of the same package or module names.
+
+    * The multiple package declarations in KeyedText.pm are no longer
+    obfuscated (split over 2 lines each) to prevent PAUSE from indexing them.
+
+    * Updated t/Locale_KeyedText.t so the correct class names are tested for.
+
+    * No other files were changed.
+
+2004-01-18
+
+    * Locale-KeyedText Release 0.02.
+
+    * This is a small bug fix release.
+
+    * Added 2 more tests to Locale_KeyedText.t (for 98 total) that check
+    for correct behaviour when Message Variables are given undefined hash
+    values; the tests would produce warnings when run against release 0.01.
+
+    * Made a couple small code updates to Locale::KeyedText, and
+    incremented its version from 0.01 to 0.02.  Updated the methods
+    Message->as_string() and Translator->translate_message() to substitute
+    "" for any undefined Message variable values when building their output
+    strings; now the 2 new tests will not throw warnings.
+
+    * Fixed a few small mistakes in, and made small changes to,
+    Locale::KeyedText's POD.  SYNOPSIS had bug fixes.  DESCRIPTION and SEE
+    ALSO had some small additions.  Other areas had indenting fixes.
+
 2004-01-15
 
-    * Locale-KeyedText Release 0.01, containing Locale::KeyedText 0.01, was
-    released on CPAN.  This is the first release of any distribution to
-    contain Locale::KeyedText.  This is the first release of any
-    distribution for which some of the existing work that became the
-    Locale-KeyedText distribution was in the form of executable code, and
-    not just design documentation.
+    * Locale-KeyedText Release 0.01.
+
+    * This is the initial release of Locale::KeyedText.  The module is
+    feature complete and has complete POD documentation and a complete test
+    suite.  The module is officially in beta development status, but should
+    move quickly to Released status once it starts getting used in
+    production.  The module is licensed under the GNU Lesser General Public
+    License Version 2.1.
+
+    * This distribution is the first one that I am creating with
+    MakeMaker's "make dist" command; previously I used "tar -cz ..." to
+    make distros.
+
+    * This is the first release of any distribution to contain
+    Locale::KeyedText.  This is the first release of any distribution for
+    which some of the existing work that became the Locale-KeyedText
+    distribution was in the form of executable code, and not just design
+    documentation.
+
+    * This is the Locale-KeyedText-0.01 file manifest:
+
+        ChangeLog
+        INSTALL
+        lib/Locale/KeyedText.pm
+        lib/t_Locale_KeyedText_A_L_Eng.pm
+        lib/t_Locale_KeyedText_A_L_Fre.pm
+        lib/t_Locale_KeyedText_B_L_Eng.pm
+        lib/t_Locale_KeyedText_B_L_Fre.pm
+        LICENSE
+        Makefile.PL
+        MANIFEST
+        ReadMe
+        t/Locale_KeyedText.t
+        TODO
 
 2003-09-29
 
