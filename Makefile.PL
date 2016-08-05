@@ -22,6 +22,7 @@ WriteMakefile(
       # itself, which in general wouldn't see the info in the other lists,
       # as the other lists are primarily used when generating the META.yml.
       'ExtUtils::MakeMaker' => '6.17',
+      'overload' => '1.01',
       'Scalar::Util' => '1.13',
       'Test::More' => '0.92',
    },
@@ -46,6 +47,7 @@ WriteMakefile(
          },
          requires => {
             'perl' => '5.008001', # as MIN_PERL_VERSION no affect META.yml
+            'overload' => '1.01', # bundled with Perl 5.8.1
             'Scalar::Util' => '1.13', # bundled with Perl 5.8.1
          },
          resources => {

@@ -47,6 +47,12 @@
     * For use by BUILDARGS(), en.pm has gained an additional user text
     message with key 'LKT_ARGS_BAD_PSEUDO_NAMED'.
 
+    * Added new direct external dependency on the Perl core module
+    "overload" in order that as_debug_string() automatically be used when a
+    Message or Translator object is used in a string context; previously
+    those methods had a STRINGIFY trait implemented by Class::Std.
+    We explicitly require the version 1.01 that is bundled with Perl 5.8.1.
+
     * Added "no warnings 'deprecated'" line to template_module_is_loaded()
     as a stop-gap measure until we replace the current test for a module
     being loaded with one that modern Perls find acceptable.
@@ -527,13 +533,13 @@
 
     * Updated all files containing POD (*.pm, *.pod) to re-order some POD
     sections.  Now all of the POD is after all of the code, rather than
-    that being mostly true but for a bit of POD before most of the code. 
+    that being mostly true but for a bit of POD before most of the code.
     The 'NAME' POD has been moved to just above the 'SYNOPSIS'. The
     'DEPENDENCIES' has been moved to just above the 'SEE ALSO'.  Any 'BUGS'
     and 'CAVEATS' have been moved to just below the 'SEE ALSO'.  The
     'COPYRIGHT AND LICENSE' has been moved to the very end of the file,
     except that any 'CREDITS' have been moved below that.  Also updated the
-    ReadMe file to move the 'CREDITS' below the 'COPYRIGHT AND LICENSE'. 
+    ReadMe file to move the 'CREDITS' below the 'COPYRIGHT AND LICENSE'.
     There were zero changes to the content of any POD sections, and no new
     POD sections were added or existing ones removed, except for those
     explicitly listed below.

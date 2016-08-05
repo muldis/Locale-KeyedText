@@ -28,6 +28,8 @@ my $EMPTY_STR = q{};
         $VERSION = eval $VERSION;
     }
 
+    use Scalar::Util 'blessed';
+
     # has _msg_key
         # isa Str
         # default ''
@@ -135,7 +137,7 @@ sub get_msg_vars {
     return {%{$self->_msg_vars()}};
 }
 
-######################################################################
+###########################################################################
 
 sub as_debug_string {
     my ($self) = @_;
@@ -151,6 +153,11 @@ sub as_debug_string {
            } sort keys %{$msg_vars}) . '}'
          . "\n";
 }
+
+use overload (
+    '""' => \&as_debug_string,
+    fallback => 1,
+);
 
 ###########################################################################
 
@@ -299,7 +306,7 @@ sub get_member_names {
     return [@{$self->_member_names()}];
 }
 
-######################################################################
+###########################################################################
 
 sub as_debug_string {
     my ($self) = @_;
@@ -313,6 +320,11 @@ sub as_debug_string {
              . (join q{", "}, @{$member_names}) . '"]'
          . "\n";
 }
+
+use overload (
+    '""' => \&as_debug_string,
+    fallback => 1,
+);
 
 ###########################################################################
 
@@ -1109,6 +1121,9 @@ I<This documentation is pending.>
 =head1 DEPENDENCIES
 
 This file requires any version of Perl 5.x.y that is at least 5.8.1.
+
+It also requires these Perl 5 packages that are available only bundled with
+Perl 5.8.1+ and on CPAN: L<overload-ver(1.01..*)|overload>.
 
 It also requires these Perl 5 packages that are available both bundled with
 Perl 5.8.1+ and on CPAN: L<Scalar::Util-ver(1.13..*)|Scalar::Util>.
