@@ -64,9 +64,11 @@
     methods should match that of the as_string() methods last seen in
     release 1.060002, unlike the as_debug_string() methods added in 1.06_4.
 
-    * Added "no warnings 'deprecated'" line to template_module_is_loaded()
-    as a stop-gap measure until we replace the current test for a module
-    being loaded with one that modern Perls find acceptable.
+    * Fixed Locale::KeyedText::Translator->template_module_is_loaded() to
+    replace the line "return defined %{$module_name . '::'};" with
+    "return scalar keys %{$module_name . '::'};" since calling "defined" on
+    a Perl hash gives a deprecation warning on newer Perls and otherwise is
+    bad practice and the replacement does the desired job more reliably.
 
     * Removed the Perl shebang line "#!perl" from every Perl file with one.
 

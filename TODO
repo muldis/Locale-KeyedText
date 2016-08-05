@@ -7,18 +7,10 @@ Following is a summary of things that still need doing.
 * Update INTERFACE docs to be more like Set::Relation, eg each class gets
 an h1 and each method gets an h2.
 
-* Revist how template modules are loaded or tested for already being
-loaded.  The current testing method involves treating the symbol table as a
-hash and newer Perls give a deprecation warning on that code, which uses
-"no strict 'refs';" and "no warnings 'deprecated';".  The current loading
-method uses 'eval "require $module_name;";' because it uses the bareword
-semantics of "require" so it converts :: to / in module names etc.  On one
-hand an ideal solution would be something simple that could be inlined so
-no CPAN module dependencies need to be added.  On the other hand, adding a
-new dependency on something like Module::Runtime or Class::Load may be
-justified even though other dependencies weren't, since it would involve
-robust functioning of a core feature and those candidates are mostly free
-of non-Core dependencies themselves.
+* Consider whether or not we want to add a non-Perl-core external
+dependency like Module::Runtime or Class::Load to load template modules
+more effectively, whether or not they actually bring any value and behave
+correctly for that task, and are worth the dependency weight, or not.
 
 * Write the DIAGNOSTICS and other pending documentation in KeyedText.pm,
 and write the POD for en.pm, removing sections if not applicable.

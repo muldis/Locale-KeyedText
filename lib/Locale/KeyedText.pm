@@ -417,8 +417,7 @@ sub template_module_is_loaded {
     $self->_assert_arg_str( 'template_module_is_loaded',
         '$module_name!', $module_name );
     no strict 'refs';
-    no warnings 'deprecated';  # TODO - Use a better test on next line.
-    return defined %{$module_name . '::'};
+    return scalar keys %{$module_name . '::'};
 }
 
 sub load_template_module {
