@@ -649,7 +649,7 @@ also does not make direct use of environment variables, which can aid in
 portability.
 
 Locale::KeyedText itself is trivially easy to install, since it is written
-in pure Perl and it has no non-Core dependencies.
+in pure Perl and it has no non-Perl-core dependencies.
 
 Practically speaking, Locale::KeyedText doesn't actually do a lot
 internally; it exists mainly to document a certain localization methodology
@@ -846,7 +846,7 @@ of a Message object.
 
 C<submethod new of Locale::KeyedText::Message (Str :$msg_key!, Hash :%msg_vars?)>
 
-This constructor submethod creates and returns a new C<Locale::KeyedText::Message> object.
+This constructor submethod creates and returns a new C<Message> object.
 The Message Key attribute of the new object is set from the named parameter
 $msg_key (a string); the optional named parameter %msg_vars (a hash ref)
 sets the "Message Variables" attribute if the corresponding argument is
@@ -1048,7 +1048,7 @@ of a Translator object.
 
 C<submethod new of Locale::KeyedText::Translator (Array :@set_names!, Array :@member_names!)>
 
-This constructor submethod creates and returns a new C<Locale::KeyedText::Translator> object.
+This constructor submethod creates and returns a new C<Translator> object.
 The Set Names property of the new object is set from the named parameter
 @set_names (an array ref), and Member Names is set from the named parameter
 @member_names (an array ref).
