@@ -4,9 +4,6 @@
 
 Following is a summary of things that still need doing.
 
-* Update INTERFACE docs to be more like Set::Relation, eg each class gets
-an h1 and each method gets an h2.
-
 * Consider whether or not we want to add a non-Perl-core external
 dependency like Module::Runtime or Class::Load to load template modules
 more effectively, whether or not they actually bring any value and behave

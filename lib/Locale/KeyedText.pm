@@ -446,6 +446,8 @@ sub get_template_text_from_loaded_module {
     $self->_assert_arg_str( 'get_template_text_from_loaded_module',
         '$msg_key!', $msg_key );
 
+    # TODO: Use a "can" test to suss out whether a call would work before trying it.
+
     my $text = undef;
     eval {
         $text = $module_name->get_text_by_key( $msg_key );
@@ -566,15 +568,6 @@ Refer to user messages in programs by keys
 =head1 VERSION
 
 This document describes Locale::KeyedText version 2.0.0.
-
-It also describes the same-number versions of Locale::KeyedText::Message
-("Message") and Locale::KeyedText::Translator ("Translator").
-
-I<Note that the "Locale::KeyedText" package serves only as the name-sake
-representative for this whole file, which can be referenced as a unit by
-documentation or 'use' statements or Perl archive indexes.  Aside from
-'use' statements, you should never refer directly to "Locale::KeyedText" in
-your code; instead refer to other above-named packages in this file.>
 
 =head1 SYNOPSIS
 
@@ -787,26 +780,36 @@ will support multiple languages or locales simultaneously at run time.
 =head1 INTERFACE
 
 The interface of Locale::KeyedText is entirely object-oriented; you use it
-by creating objects from its member classes, usually invoking C<new()> on
-the appropriate class name, and then invoking methods on those objects.
-All of their attributes are private, so you must use accessor methods.
-Locale::KeyedText does not declare any subroutines or export such.
+by creating objects from its member classes and then invoking methods on
+those objects.  All of their attributes are private, so you must use
+accessor methods.  Locale::KeyedText does not declare any subroutines or
+export such.
 
 The usual way that Locale::KeyedText indicates a failure is to throw an
 exception; most often this is due to invalid input.  If an invoked routine
 simply returns, you can assume that it has succeeded, even if the return
 value is undefined.
 
-=head2 The Locale::KeyedText::Message Class
+Locale::KeyedText provides 2 classes that comprise its API; their names are
+C<Locale::KeyedText::Message> and C<Locale::KeyedText::Translator>; this
+documentation will typically refer to them by the aliases C<Message> and
+C<Translator> for brevity.
 
-A Message object is a simple container which stores data to be used or
-displayed by your program.  The Message class is pure and deterministic,
+The empty package C<Locale::KeyedText> exists only to serve as the
+name-sake for this whole file as a unit, for documentation or C<use>
+statements or Perl module indexes; it does not provide any actual
+functionality and should not be referred to in code besides C<use> etc.
+
+=head1 THE Locale::KeyedText::Message CLASS
+
+A C<Message> object is a simple container which stores data to be used or
+displayed by your program.  The C<Message> class is pure and deterministic,
 such that all of its class and object methods will each return the same
 result and/or make the same change to an object when the permutation of its
 arguments and any invocant object's attributes is identical; they do not
 interact with the outside environment at all.
 
-A Message object has two main attributes:
+A C<Message> object has two main attributes:
 
 =over
 
@@ -833,13 +836,17 @@ may store references to other objects in them if you wish.
 
 =back
 
-This is the main Message constructor method:
+=head1 Constructor Submethods (Message)
 
-=over
+This is currently the only routine declared by Message that you
+invoke off of the class name; currently you invoke all other routines off
+of a Message object.
 
-=item C<new( :$msg_key!, :%msg_vars? )>
+=head2 new (Message)
 
-This method creates and returns a new Locale::KeyedText::Message object.
+C<submethod new of Locale::KeyedText::Message (Str :$msg_key!, Hash :%msg_vars?)>
+
+This constructor submethod creates and returns a new C<Locale::KeyedText::Message> object.
 The Message Key attribute of the new object is set from the named parameter
 $msg_key (a string); the optional named parameter %msg_vars (a hash ref)
 sets the "Message Variables" attribute if the corresponding argument is
@@ -856,38 +863,47 @@ Some example usage:
             'GIVEN_COL_NAME' => $col_name,
         } });
 
-Note that a Message object does not permit changes to its attributes; they
+Note that a C<Message> object does not permit changes to its attributes; they
 must all be set when the object is constructed.  If you want to
-conceptually change an existing Message object, you must create a new
+conceptually change an existing C<Message> object, you must create a new
 object that is a clone of the first but for the changes.
 
-=back
+=head1 Accessor Methods (Message)
 
-A Message object has these methods:
+These C<Message> object methods are mainly about extracting object
+attributes, essentially the reverse process of an object constructor.
 
-=over
+=head2 export_as_hash (Message)
 
-=item C<export_as_hash()>
+C<method export_as_hash of Hash ($self:)>
 
-This method returns a deep copy of this Message as a Hash ref of 2
+This method returns a deep copy of this C<Message> as a Hash ref of 2
 elements, which correspond to the 2 named parameters of new().
 
-=item C<get_msg_key()>
+=head2 get_msg_key
+
+C<method get_msg_key of Str ($self:)>
 
 This method returns the Message Key attribute of its object.
 
-=item C<get_msg_var( $var_name! )>
+=head2 get_msg_var
+
+C<method get_msg_var of Any ($self: Str $var_name!)>
 
 This method returns the Message Variable value (a string) associated with
 the variable name specified in the positional parameter $var_name (a
 string).
 
-=item C<get_msg_vars()>
+=head2 get_msg_vars
+
+C<method get_msg_vars of Hash ($self:)>
 
 This method returns all Message Variable names and values of this object as
 a hash ref.
 
-=item C<as_debug_string()>
+=head2 as_debug_string (Message)
+
+C<method as_debug_string of Str ($self:)>
 
 This method returns a stringified version of this object which is suitable
 for debugging purposes (such as to test that the object's contents look
@@ -895,14 +911,14 @@ good at a glance); no attribute values are escaped and you shouldn't try to
 extract them.  This method is also defined as the implicit handler when
 coercing this object to a string.
 
-=item C<as_debug_str()>
+=head2 as_debug_str (Message)
+
+C<method as_debug_str of Str ($self:)>
 
 This method is like C<as_debug_string()> but returns a terser
 representation that is not split over multiple lines and adds fewer labels.
 
-=back
-
-=head2 The Template Modules
+=head1 THE TEMPLATE MODULES
 
 Locale::KeyedText doesn't define any "Template" modules, but it expects you
 to make modules having a specific simple API that will serve their role.
@@ -944,16 +960,16 @@ And inside the text Template file "MyApp/L/Fre.pm" you can have:
 
 A Template module is very simple, consisting mainly of a data-stuffed hash
 and an accessor method to read values from it by key.  Each template hash
-key corresponds to the Message Key attribute of a Message object, and each
+key corresponds to the Message Key attribute of a C<Message> object, and each
 hash value contains the user-readable message text associated with the
-Message; this user string may also contain variable names that correspond
+C<Message>; this user string may also contain variable names that correspond
 to Message Variables, which will be substituted at run-time before the text
 is shown to the user.
 
 Each Template module ideally comes as part of a set, at least one member
 large, with each set member being an an exclusive alternative for the rest
 of the set. There is a separate template module for each distinct "user
-language" (or "user type") for each distinct Message; each file can be
+language" (or "user type") for each distinct C<Message>; each file can be
 shared by multiple Messages but the whole module must represent a single
 language.
 
@@ -985,16 +1001,16 @@ I<For the present, Locale::KeyedText expects its Template modules to come
 from Perl modules, but in the future they may alternately be something
 else, such as XML or tab-delimited plain text files.>
 
-=head2 The Locale::KeyedText::Translator Class
+=head1 THE Locale::KeyedText::Translator CLASS
 
-While a Translator object stores some attributes for configuration, its
-main purpose is to convert Message objects on demand into user-readable
+While a C<Translator> object stores some attributes for configuration, its
+main purpose is to convert C<Message> objects on demand into user-readable
 message strings, using data from external Template modules as a template.
-The Translator class as a whole is not pure and deterministic because it
+The C<Translator> class as a whole is not pure and deterministic because it
 invokes user-defined external files for reading, mainly in the
 C<translate_message()> method, but it has no other side effects.
 
-A Translator object has 2 main attributes:
+A C<Translator> object has 2 main attributes:
 
 =over
 
@@ -1022,13 +1038,17 @@ is used.  Each Set Name can be any defined and non-empty string.
 
 =back
 
-This is the main Translator constructor method:
+=head1 Constructor Submethods (Translator)
 
-=over
+This is currently the only routine declared by Translator that you
+invoke off of the class name; currently you invoke all other routines off
+of a Translator object.
 
-=item C<new( :@set_names!, :@member_names! )>
+=head2 new (Translator)
 
-This method creates and returns a new Locale::KeyedText::Translator object.
+C<submethod new of Locale::KeyedText::Translator (Array :@set_names!, Array :@member_names!)>
+
+This constructor submethod creates and returns a new C<Locale::KeyedText::Translator> object.
 The Set Names property of the new object is set from the named parameter
 @set_names (an array ref), and Member Names is set from the named parameter
 @member_names (an array ref).
@@ -1041,32 +1061,39 @@ Some example usage:
     my $translator2 = Locale::KeyedText::Translator->new({
         'set_names' => ['Foo::L::'], 'member_names' => ['Eng'] });
 
-Note that a Translator object does not permit changes to its attributes;
+Note that a C<Translator> object does not permit changes to its attributes;
 they must all be set when the object is constructed.  If you want to
-conceptually change an existing Translator object, you must create a new
+conceptually change an existing C<Translator> object, you must create a new
 object that is a clone of the first but for the changes.
 
-=back
+=head1 Accessor Methods (Translator)
 
-A Translator object has these methods:
+These C<Translator> object methods are mainly about extracting object
+attributes, essentially the reverse process of an object constructor.
 
-=over
+=head2 export_as_hash (Translator)
 
-=item C<export_as_hash()>
+C<method export_as_hash of Hash ($self:)>
 
-This method returns a deep copy of this Translator as a Hash ref of 2
+This method returns a deep copy of this C<Translator> as a Hash ref of 2
 elements, which correspond to the 2 named parameters of new().
 
-=item C<get_set_names()>
+=head2 get_set_names
+
+C<method get_set_names of Array ($self:)>
 
 This method returns all Set Names elements in this object as an array ref.
 
-=item C<get_member_names()>
+=head2 get_member_names
+
+C<method get_member_names of Array ($self:)>
 
 This method returns all Member Names elements in this object as an array
 ref.
 
-=item C<as_debug_string()>
+=head2 as_debug_string (Translator)
+
+C<method as_debug_string of Str ($self:)>
 
 This method returns a stringified version of this object which is suitable
 for debugging purposes (such as to test that the object's contents look
@@ -1074,12 +1101,16 @@ good at a glance); no attribute values are escaped and you shouldn't try to
 extract them.  This method is also defined as the implicit handler when
 coercing this object to a string.
 
-=item C<as_debug_str()>
+=head2 as_debug_str (Translator)
+
+C<method as_debug_str of Str ($self:)>
 
 This method is like C<as_debug_string()> but returns a terser
 representation that is not split over multiple lines and adds fewer labels.
 
-=item C<get_set_member_combinations()>
+=head2 get_set_member_combinations
+
+C<method get_set_member_combinations of Array ($self:)>
 
 This method returns an array ref having all combinations of this object's
 Set Names and Member Names elements, concatenated in the form
@@ -1090,12 +1121,20 @@ and Members of ['Eng','Fre'], the resulting list is
 internally by translate_message() to produce the list of Template module
 names that it will search.
 
-=item C<translate_message( $message! )>
+=head1 Main Procedural Methods
 
-This method takes a (machine-readable) Message object as its positional
+These C<Translator> object procedural methods are concerned with the actual
+core functionality of rendering C<Message> objects as human readable text
+messages using Template modules.
+
+=head2 translate_message
+
+C<method translate_message of Str ($self: Locale::KeyedText::Message $message!)>
+
+This method takes a (machine-readable) C<Message> object as its positional
 parameter $message and returns an equivalent human readable text message
-string; this assumes that a Template corresponding to the Message could be
-found using the Translator object's Set and Member properties; if none
+string; this assumes that a Template corresponding to the C<Message> could be
+found using the C<Translator> object's Set and Member properties; if none
 could be matched, this method returns undef.  This method could be
 considered to implement the 'main' functionality of Locale::KeyedText.
 
@@ -1103,25 +1142,29 @@ Some example usage:
 
     my $user_text_string = $translator->translate_message( $message );
 
-=back
+=head1 Utility Procedural Methods
 
-The Translator class also has these utility methods, which are all used by
+The C<Translator> class also has these utility methods, which are all used by
 translate_message() to handle the trickier parts of its work:
 
-=over
+=head2 template_module_is_loaded
 
-=item C<template_module_is_loaded( $module_name! )>
+C<method template_module_is_loaded of Bool ($self: Str $module_name!)>
 
 This method takes the name of a Perl package in its positional parameter
 $module_name (a string) and checks whether or not it has already been
 loaded, returning true if so and false if not.
 
-=item C<load_template_module( $module_name! )>
+=head2 load_template_module
+
+C<method load_template_module ($self: Str $module_name!)>
 
 This method takes the name of a Perl package in its positional parameter
 $module_name (a string) and tries to load it using 'require'.
 
-=item C<get_template_text_from_loaded_module( $module_name!, $msg_key! )>
+=head2 get_template_text_from_loaded_module
+
+C<method get_template_text_from_loaded_module of Str ($self: Str $module_name!, Str $msg_key!)>
 
 This method takes the name of a Perl package in its positional parameter
 $module_name (a string), and a Message Key in its positional parameter
@@ -1130,7 +1173,9 @@ is already loaded, it tries to invoke $module_name.get_text_by_key(
 $msg_key ) and return that subroutine's result, which is a Template text
 string if the module recognizes $msg_key, and the undefined value if not.
 
-=item C<interpolate_vars_into_template_text( $text!, %msg_vars! )>
+=head2 interpolate_vars_into_template_text
+
+C<method interpolate_vars_into_template_text of Str ($self: Str $text!, Hash %msg_vars!)>
 
 This method takes a defined (but possibly empty) Template text string in
 its positional parameter $text (a string), and a Message Variables hash ref
@@ -1141,8 +1186,6 @@ bounded by '<' and '>'.  For example, given "Hello <place>!" in $text and
 "{ 'place' => 'World' }" in %msg_vars, it will return "Hello World!".  All
 occurances of any given variable name will be replaced, non-recursively,
 and any "<foo>" not matched by a variable name will be left intact.
-
-=back
 
 =head1 DIAGNOSTICS
 

@@ -70,6 +70,16 @@
     a Perl hash gives a deprecation warning on newer Perls and otherwise is
     bad practice and the replacement does the desired job more reliably.
 
+    * Modernize the POD formatting of the API documentation in
+    KeyedText.pm.  Each class or stand-in now has its own level-1 heading.
+    Each routine now has its own level-2 heading so it is easy to lookup,
+    and the routines are now grouped under level-1 headings by category.
+    Each routine's documented signature now specifies submethod vs method,
+    names each method invocant as $self, adds routine parameter types, adds
+    routine result types where applicable.  Proper names such as classes
+    are now C<> quoted.  Also moved a detail block from the VERSION section
+    to INTERFACE.
+
     * Removed the Perl shebang line "#!perl" from every Perl file with one.
 
     * The second main purpose of this release is bringing back the thorough
