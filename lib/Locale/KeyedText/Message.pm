@@ -1,3 +1,8 @@
+use 5.008001;
+use utf8;
+use strict;
+use warnings;
+
 ###########################################################################
 ###########################################################################
 
@@ -128,7 +133,7 @@ sub as_debug_string {
          . "\n"
          . '    %msg_vars: {' . (join q{, }, map {
                '"' . $_ . '"="' . (defined $msg_vars->{$_}
-                   ? $msg_vars->{$_} : $EMPTY_STR) . '"'
+                   ? $msg_vars->{$_} : q{}) . '"'
            } sort keys %{$msg_vars}) . '}'
          . "\n";
 }
@@ -144,7 +149,7 @@ sub as_debug_str {
     my $msg_vars = $self->_msg_vars();
     return $msg_key . ': ' . join ', ', map {
             $_ . '='
-            . (defined $msg_vars->{$_} ? $msg_vars->{$_} : $EMPTY_STR)
+            . (defined $msg_vars->{$_} ? $msg_vars->{$_} : q{})
         } sort keys %{$msg_vars};
 }
 
@@ -165,7 +170,7 @@ sub _assert_arg_str {
         if !defined $val;
     $self->_die_with_msg( 'LKT_ARG_EMP_STR',
             { 'METH' => $meth, 'ARG' => $arg } )
-        if $val eq $EMPTY_STR;
+        if $val eq q{};
 }
 
 sub _assert_arg_hash {
@@ -178,10 +183,14 @@ sub _assert_arg_hash {
         if ref $val ne 'HASH';
     $self->_die_with_msg( 'LKT_ARG_HASH_KEY_EMP_STR',
             { 'METH' => $meth, 'ARG' => $arg } )
-        if exists $val->{$EMPTY_STR};
+        if exists $val->{q{}};
 }
 
 ###########################################################################
 
 } # class Locale::KeyedText::Message
 
+###########################################################################
+###########################################################################
+
+1;

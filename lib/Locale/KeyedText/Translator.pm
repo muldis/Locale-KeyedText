@@ -1,3 +1,10 @@
+use 5.008001;
+use utf8;
+use strict;
+use warnings;
+
+use Locale::KeyedText::Message 2.000000;
+
 ###########################################################################
 ###########################################################################
 
@@ -265,7 +272,7 @@ sub interpolate_vars_into_template_text {
     while (my ($var_name, $var_value) = each %{$msg_vars_ref}) {
         my $var_value_as_str
             = defined $var_value ? "$var_value"
-            :                      $EMPTY_STR
+            :                      q{}
             ;
         $text =~ s/ \< $var_name \> /$var_value_as_str/xg;
     }
@@ -290,7 +297,7 @@ sub _assert_arg_str {
         if !defined $val;
     $self->_die_with_msg( 'LKT_ARG_EMP_STR',
             { 'METH' => $meth, 'ARG' => $arg } )
-        if $val eq $EMPTY_STR;
+        if $val eq q{};
 }
 
 sub _assert_arg_ary {
@@ -310,7 +317,7 @@ sub _assert_arg_ary {
             if !defined $val_elem;
         $self->_die_with_msg( 'LKT_ARG_ARY_ELEM_EMP_STR',
                 { 'METH' => $meth, 'ARG' => $arg } )
-            if $val_elem eq $EMPTY_STR;
+            if $val_elem eq q{};
     }
 }
 
@@ -324,7 +331,7 @@ sub _assert_arg_hash {
         if ref $val ne 'HASH';
     $self->_die_with_msg( 'LKT_ARG_HASH_KEY_EMP_STR',
             { 'METH' => $meth, 'ARG' => $arg } )
-        if exists $val->{$EMPTY_STR};
+        if exists $val->{q{}};
 }
 
 sub _assert_arg_msg {
@@ -342,3 +349,7 @@ sub _assert_arg_msg {
 
 } # class Locale::KeyedText::Translator
 
+###########################################################################
+###########################################################################
+
+1;
