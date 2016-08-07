@@ -11,7 +11,10 @@ examples/inverter2/MyApp/L/Homer.pm
 examples/inverter2/MyLib.pm
 INSTALL
 lib/Locale/KeyedText.pm
+lib/Locale/KeyedText.pod
 lib/Locale/KeyedText/L/en.pm
+lib/Locale/KeyedText/Message.pm
+lib/Locale/KeyedText/Translator.pm
 LICENSE/GPL
 LICENSE/LGPL
 Makefile.PL
