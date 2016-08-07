@@ -8,7 +8,7 @@ use warnings;
 
 { package Locale::KeyedText::Message; # class
     BEGIN {
-        our $VERSION = '2.000000';
+        our $VERSION = '2.001000';
         $VERSION = eval $VERSION;
     }
 

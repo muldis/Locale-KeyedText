@@ -2,6 +2,41 @@
                                   Changes
 ---------------------------------------------------------------------------
 
+2016-08-xx
+
+    * Locale::KeyedText version 2.1.0 for Perl 5 is released on CPAN as
+    Locale-KeyedText-2.1.0.tar.gz.
+
+    * The sole change of this release is to rearrange the lib/* files at a
+    high level, mainly by splitting those files apart into smaller files.
+
+    * Added new file lib/Locale/KeyedText.pod which contains all the POD
+    documentation that was in KeyedText.pm and en.pm.  As such, all of the
+    lib/*.pm files now only contain Perl code, and all POD now lives in
+    lib/*.pod files.  The first primary benefit of this change is that the
+    code and documentation can more easily be organized differently where
+    we want, rather than their needing a 1:1 structural correspondance.
+    The second primary benefit of this change is that now all POD will be
+    automatically HTMLized by GitHub or other repositories for easier
+    reading, rather than POD inside *.pm files not getting that treatment.
+
+    * Split the file lib/Locale/KeyedText.pm into itself plus 2 new files
+    lib/Locale/KeyedText/Message.pm and lib/Locale/KeyedText/Translator.pm.
+    The end result is that this distribution no longer has any primary
+    packages that are "cuckoo packages", meaning packages declared in a
+    file with a different name than the package.  While such bundling can
+    be a reasonable design choice, the CPAN infrastructure does run into
+    some problems where those exist.  For example, one can ask a CPAN
+    client to "install" such a package which it will then do but then treat
+    as if it hadn't.  Therefore, in the future, "cuckoo packages" should be
+    restricted more to ones that are truly internal and not part of a
+    public API of the module; Message and Translator ARE part of the API.
+
+    * This release has no other changes, and in particular no functional
+    changes.  However, its version is being incremented by 0.1.0 rather
+    than 0.0.1 because it breaks forwards compatibility; one can now "use"
+    Message or Translator directly, and previously they couldn't.
+
 2016-08-05
 
     * Locale::KeyedText version 2.0.0 for Perl 5 is released on CPAN as

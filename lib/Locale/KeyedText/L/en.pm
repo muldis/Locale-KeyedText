@@ -93,7 +93,7 @@ my $TEXT_STRINGS = {
 
 { package Locale::KeyedText::L::en; # module
     BEGIN {
-        our $VERSION = '2.000000';
+        our $VERSION = '2.001000';
         $VERSION = eval $VERSION;
     }
     sub get_text_by_key {

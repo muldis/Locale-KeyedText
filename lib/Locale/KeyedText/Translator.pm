@@ -3,14 +3,14 @@ use utf8;
 use strict;
 use warnings;
 
-use Locale::KeyedText::Message 2.000000;
+use Locale::KeyedText::Message 2.001000;
 
 ###########################################################################
 ###########################################################################
 
 { package Locale::KeyedText::Translator; # class
     BEGIN {
-        our $VERSION = '2.000000';
+        our $VERSION = '2.001000';
         $VERSION = eval $VERSION;
     }
 
