@@ -11,6 +11,23 @@ Refer to user messages in programs by keys
 
 This document describes Locale::KeyedText version 2.0.0.
 
+=head1 PACKAGES
+
+The Locale::KeyedText module/distribution includes the following packages,
+all of which are documented here.
+
+=over
+
+=item C<Locale::KeyedText> - Empty namesake for the module/distribution
+
+=item C<Locale::KeyedText::Message> - Class for Message objects
+
+=item C<Locale::KeyedText::Translator> - Class for Translator objects
+
+=item C<Locale::KeyedText::L::en> - Localization for English
+
+=back
+
 =head1 SYNOPSIS
 
     use Locale::KeyedText;
@@ -628,6 +645,10 @@ bounded by '<' and '>'.  For example, given "Hello <place>!" in $text and
 "{ 'place' => 'World' }" in %msg_vars, it will return "Hello World!".  All
 occurances of any given variable name will be replaced, non-recursively,
 and any "<foo>" not matched by a variable name will be left intact.
+
+=head1 THE Locale::KeyedText::L::en CLASS
+
+I<This documentation is pending.>
 
 =head1 DIAGNOSTICS
 
