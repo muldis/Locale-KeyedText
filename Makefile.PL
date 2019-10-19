@@ -1,4 +1,4 @@
-use 5.008001;
+use 5.008000;
 use utf8;
 use strict;
 use warnings;
@@ -21,13 +21,13 @@ WriteMakefile(
       # where the other is canonical; this list is for use by MakeMaker
       # itself, which in general wouldn't see the info in the other lists,
       # as the other lists are primarily used when generating the META.yml/json.
-      'ExtUtils::MakeMaker' => '6.17',
-      'overload' => '1.01',
+      'ExtUtils::MakeMaker' => '6.03',
+      'overload' => '1.00',
       'Scalar::Util' => '1.13',
       'Test::More' => '0.92',
    },
    OPTIONAL( '6.48',
-      MIN_PERL_VERSION => '5.008001',
+      MIN_PERL_VERSION => '5.008000',
    ),
    OPTIONAL( '6.31',
       LICENSE => 'artistic_2',
@@ -38,17 +38,18 @@ WriteMakefile(
       # the requires field.  (Comment From DBD::SQLite; do *we* need that?)
       META_ADD => {
          configure_requires => {
-            'ExtUtils::MakeMaker' => '6.17', # bundled with Perl 5.8.1
+            'ExtUtils::MakeMaker' => '6.03', # bundled with Perl 5.8.0
          },
          build_requires => {
-            'ExtUtils::MakeMaker' => '6.17', # bundled with Perl 5.8.1
+            'ExtUtils::MakeMaker' => '6.03', # bundled with Perl 5.8.0
             # These are bundled with newer versions of Perl only.
             'Test::More' => '0.92', # bundled with Perl 5.10.1, min 0.88 needed
          },
          requires => {
-            'perl' => '5.008001', # as MIN_PERL_VERSION no affect META.yml
-            'overload' => '1.01', # bundled with Perl 5.8.1
-            'Scalar::Util' => '1.13', # bundled with Perl 5.8.1
+            'perl' => '5.008000', # as MIN_PERL_VERSION no affect META.yml
+            'overload' => '1.00', # bundled with Perl 5.8.0
+            # These are bundled with newer versions of Perl only.
+            'Scalar::Util' => '1.13', # bundled with Perl 5.8.1, min 1.09 needed
          },
       },
       META_MERGE => {
