@@ -15,8 +15,7 @@ lib/Locale/KeyedText.pod
 lib/Locale/KeyedText/L/en.pm
 lib/Locale/KeyedText/Message.pm
 lib/Locale/KeyedText/Translator.pm
-LICENSE/GPL
-LICENSE/LGPL
+LICENSE/artistic-2_0.txt
 Makefile.PL
 MANIFEST
 README

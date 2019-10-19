@@ -2,6 +2,17 @@
                                   Changes
 ---------------------------------------------------------------------------
 
+2019-xx-xx
+
+    * Locale::KeyedText version 2.1.1 for Perl 5 is released on CPAN as
+    Locale-KeyedText-2.1.1.tar.gz.
+
+    * Locale::KeyedText is now released under the terms of the Artistic
+    License version 2 rather than the GNU Lesser General Public License
+    (LGPL) version 3+.
+
+    * Incremented all copyright year range-ends to 2019.
+
 2016-08-06
 
     * Locale::KeyedText version 2.1.0 for Perl 5 is released on CPAN as
