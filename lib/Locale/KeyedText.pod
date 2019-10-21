@@ -662,10 +662,10 @@ I<This documentation is pending.>
 
 This file requires any version of Perl 5.x.y that is at least 5.8.0.
 
-It also requires these Perl 5 packages that are available only bundled with
+It also requires these Perl packages that are available only bundled with
 Perl 5.8.0+: L<overload-ver(1.00..*)|overload>.
 
-It also requires these Perl 5 packages that are available both bundled with
+It also requires these Perl packages that are available both bundled with
 Perl 5.8.1+ and on CPAN: L<Scalar::Util-ver(1.13..*)|Scalar::Util>.
 
 =head1 INCOMPATIBILITIES
@@ -674,7 +674,7 @@ None reported.
 
 =head1 SEE ALSO
 
-These Perl 5 packages work to solve similar problems as Locale::KeyedText:
+These Perl packages work to solve similar problems as Locale::KeyedText:
 L<Locale::Maketext>, L<Locale::gettext>, L<Locale::PGetText>,
 L<DBIx::BabelKit>.
 

@@ -4,6 +4,10 @@
 
 Following is a summary of things that still need doing.
 
+* Tweak more things to help MetaCPAN and Perl toolchains handle us better.
+
+* Modernize and/or purge legacy documentation like README/INSTALL/etc.
+
 * Consider whether or not we want to add a non-Perl-core external
 dependency like Module::Runtime or Class::Load to load template modules
 more effectively, whether or not they actually bring any value and behave

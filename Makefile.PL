@@ -57,10 +57,10 @@ WriteMakefile(
             directory => ['examples','t'],
          },
          resources => {
-            homepage => 'http://www.muldis.com/',
+            homepage => 'https://muldis.com',
             license => 'https://www.perlfoundation.org/artistic-license-20.html',
             MailingList => 'http://mm.darrenduncan.net/mailman/listinfo',
-            repository => 'http://github.com/muldis/Locale-KeyedText-Perl5',
+            repository => 'https://github.com/muldis/Locale-KeyedText',
          },
       },
    ),
