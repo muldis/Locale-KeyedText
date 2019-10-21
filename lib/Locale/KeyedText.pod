@@ -9,7 +9,7 @@ Refer to user messages in programs by keys
 
 =head1 VERSION
 
-This document describes Locale::KeyedText version 2.1.0.
+This document describes Locale::KeyedText version 2.1.1.
 
 =head1 PACKAGES
 

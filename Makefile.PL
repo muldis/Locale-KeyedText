@@ -13,7 +13,7 @@ sub OPTIONAL {
 
 WriteMakefile(
    NAME => 'Locale::KeyedText',
-   VERSION => '2.1.0',
+   VERSION => '2.1.1',
    ABSTRACT => 'Refer to user messages in programs by keys',
    AUTHOR => 'Darren Duncan <darren@DarrenDuncan.net>',
    PREREQ_PM => {
