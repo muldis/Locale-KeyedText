@@ -4,8 +4,7 @@
 
 =head1 NAME
 
-Locale::KeyedText -
-Refer to user messages in programs by keys
+Locale::KeyedText - Refer to user messages in programs by keys
 
 =head1 VERSION
 
